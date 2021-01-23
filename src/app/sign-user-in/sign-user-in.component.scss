@@ -1,0 +1,97 @@
+@import '~@angular/material/theming';
+@import '~../../theme.scss';
+
+.container-layout{
+  //background-color: $light-black-background;
+  .heading-close{
+    float:right;
+  }
+}
+.log-in-container{
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.form-parent {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  .heading{
+    font-weight: bold;
+  }
+ 
+  mat-form-field {
+    display: block;
+    width: 70%;
+  }
+
+  button{
+    width: 70%;
+  }
+
+  .register-heading{
+    margin-top: 20px;
+    margin-bottom: 5px;
+  }
+
+  // inout field background colours for poll heading and poll question 
+  ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+    background-color: $background-color;
+  }
+
+}
+
+
+ // text colour 
+ mat-form-field.mat-form-field {
+  color: $primary-main;
+}
+
+// border - colour 
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+  color:$light-black-background;
+}
+
+// focused border color 
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+  color: $accent-main;
+}
+
+@media (min-width: 768px) { 
+  .form-parent{
+    mat-form-field {
+      width: 50%;
+    }
+    button{
+      width: 50%;
+    }
+  }
+}
+
+@media (min-width: 1024px) { 
+  
+
+  .form-parent{
+    mat-form-field {
+      width: 40%;
+    }
+    button{
+      width: 40%;
+    }
+  }
+ 
+}
+
+
+
+
+
+
+
+
+

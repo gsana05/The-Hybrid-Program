@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'hybrid-athlete-program';
+
+  navLinks = [
+    {path: 'playarea', label: 'Play Area'},
+    {path: 'about', label: 'About me'}
+  ]
+
 }

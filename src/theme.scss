@@ -1,0 +1,138 @@
+/* For use in src/lib/core/theming/_palette.scss */
+
+//Change default font throughout
+$custom-typography: mat-typography-config($font-family: '"Rubik", "Helvetica Neue", sans-serif');
+@include mat-core($custom-typography);
+
+$hybrid-accent: (
+    50 : #fdf3ee,
+    100 : #fbe2d4,
+    200 : #f8ceb8,
+    300 : #f5ba9b,
+    400 : #f2ac85,
+    500 : #f09d70,
+    600 : #ee9568,
+    700 : #ec8b5d,
+    800 : #e98153,
+    900 : #e56f41,
+    A100 : #ffffff,
+    A200 : #ffffff,
+    A400 : #ffdccf,
+    A700 : #ffc9b6,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #000000,
+        900 : #000000,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$hybrid-primary: (
+    50 : #fefefe,
+    100 : #fdfdfd,
+    200 : #fcfcfc,
+    300 : #fafafa,
+    400 : #f9f9f9,
+    500 : #f8f8f8,
+    600 : #f7f7f7,
+    700 : #f6f6f6,
+    800 : #f5f5f5,
+    900 : #f3f3f3,
+    A100 : #ffffff,
+    A200 : #ffffff,
+    A400 : #ffffff,
+    A700 : #ffffff,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #000000,
+        900 : #000000,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$hybrid-warn: (
+    50 : #fde9e3,
+    100 : #fac7b8,
+    200 : #f6a289,
+    300 : #f27d59,
+    400 : #f06136,
+    500 : #ed4512,
+    600 : #eb3e10,
+    700 : #e8360d,
+    800 : #e52e0a,
+    900 : #e01f05,
+    A100 : #ffffff,
+    A200 : #ffd9d5,
+    A400 : #ffaaa2,
+    A700 : #ff9289,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+
+// Create the theme object (a Sass map containing all of the palettes).
+$primary-palette: mat-palette($hybrid-primary);
+$accent-palette: mat-palette($hybrid-accent);
+$warn-palette: mat-palette($hybrid-warn);
+$hybrid-app-theme: mat-dark-theme($primary-palette, $accent-palette, $warn-palette);
+
+// Edit the background colour, which mat-light-theme has chosen for us
+$background: map-get($hybrid-app-theme, background);
+$background-color: #232324;
+$background: map_merge($background, (background: $background-color));
+$hybrid-app-theme: map_merge($hybrid-app-theme, (background: $background));
+
+$primary-main: mat-color($primary-palette);
+$primary-main-contrast: mat-color($primary-palette, default-contrast);
+$accent-main: mat-color($accent-palette);
+$accent-main-contrast: mat-color($accent-palette, default-contrast);
+$warn-main: mat-color($warn-palette);
+$warn-main-contrast: mat-color($warn-palette, default-contrast);
+
+$background-border-color: #e4e8f0;
+
+$toggle-green: rgb(85, 153, 85); 
+$green: #008000;
+$info-blue:#138496;
+$red: #ff0000; 
+$light-black-background: #1b1b1d;
+$light-black-message-background: #242424;
+$dark-grey: #404040;
+$light-grey: #606060;
+$scrollbar-grey: #bfbfbf;
+
+$custom-typography: mat-typography-config($font-family: '"Lato", "Arial", Helvetica;');

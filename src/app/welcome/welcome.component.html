@@ -1,0 +1,68 @@
+<div class="main-container">
+
+    <div class="top">
+        
+    </div>
+
+    <div class="middle">
+
+        <div class="middle-heading" [@fade]>
+
+            <div class="sign-in-btn">
+                <button  mat-raised-button (click)="logInPopUp()">Sign In</button>
+            </div>
+            
+            <h1>Hybrid Training Plan</h1>
+            <div class="social-media-icons" [@fade]>
+                <a class="facebook" href="#">
+                    <i class="fa fa-facebook-square fa-2x" aria-hidden="true"></i>
+                </a>
+                <a class="instagram" href="#">
+                    <i class="fa fa-instagram fa-2x" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+
+        <mat-tab-group mat-align-tabs="center" #tabGroup (selectedTabChange)="onTabChange($event)">
+
+            <mat-tab *ngIf="true" label="tab1">
+                <ng-template mat-tab-label>
+                  Home
+              </ng-template>
+                
+              </mat-tab>
+    
+              <mat-tab *ngIf="true" label="tab2">
+                <ng-template mat-tab-label>
+                      About me
+                 </ng-template>
+             </mat-tab>
+
+             <mat-tab *ngIf="true" label="tab3">
+              <ng-template mat-tab-label>
+                    Programs
+               </ng-template>
+           </mat-tab>
+            
+        </mat-tab-group>
+    
+
+        <div class="middle-container" *ngIf="tabSelected === 1">
+            <app-home></app-home>
+        </div>
+
+        <div class="middle-container" *ngIf="tabSelected === 2">
+            <app-about-me></app-about-me>
+        </div>
+
+        <div class="middle-container" *ngIf="tabSelected === 3">
+            <app-programs></app-programs>
+        </div>
+
+    </div>
+
+    <div class="bottom">
+       
+    </div>
+
+</div>

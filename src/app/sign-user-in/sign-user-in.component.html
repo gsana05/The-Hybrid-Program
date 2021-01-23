@@ -1,0 +1,32 @@
+
+<div class="container-layout">
+    <button mat-icon-button [mat-dialog-close]="true" class="heading-close">
+        <mat-icon>close</mat-icon>
+    </button>
+    <div class="log-in-container">
+
+        <form [formGroup]="loginForm">
+            <div class="form-parent">
+                <h1 class="heading">Sign in</h1>
+                <label class="error">{{errorMessage}}</label>
+                <mat-label>Email address</mat-label>
+                <mat-form-field appearance="outline">
+                    <!--<mat-label>Email address</mat-label>-->
+                        <input matInput type="email" formControlName="email" #email required>
+                </mat-form-field>
+
+                <mat-label>Password</mat-label>
+                <mat-form-field appearance="outline">
+                    <!--<mat-label>Password</mat-label>-->
+                        <input matInput type="password" formControlName="password" #password required>
+                </mat-form-field>
+
+                <button (click)="signIn(email.value, password.value)" mat-flat-button class="submit-btn" color="primary">Create account</button>
+                <div *ngIf="awaitingSignIn">Waiting...</div>
+                <div class="error-credentials" *ngIf="signInError">{{signInError}}</div>
+                
+            </div>
+        </form>  
+    </div>
+</div>
+    
