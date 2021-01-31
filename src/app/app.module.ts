@@ -30,7 +30,15 @@ import { AboutMeComponent } from './about-me/about-me.component';
 import { ProgramsComponent } from './programs/programs.component';
 import { HomeComponent } from './home/home.component';
 import { SignUserIn } from './sign-user-in/sign-user-in..component';
-import { CreateUserAccount } from './create-user-account/create-user-account.component'
+import { CreateUserAccount } from './create-user-account/create-user-account.component';
+
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireAuthGuardModule } from '@angular/fire/auth-guard';
+import {environment} from "../environments/environment";
+import { DashboardComponent } from './dashboard/dashboard.component';
+import * as admin from "firebase-admin";
 
 @NgModule({
   declarations: [
@@ -41,12 +49,17 @@ import { CreateUserAccount } from './create-user-account/create-user-account.com
     ProgramsComponent,
     HomeComponent,
     SignUserIn,
-    CreateUserAccount
+    CreateUserAccount,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NoopAnimationsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule,
+    AngularFireAuthModule,
+    AngularFireAuthGuardModule,
     MatSliderModule,
     MatCardModule,
     MatButtonModule,

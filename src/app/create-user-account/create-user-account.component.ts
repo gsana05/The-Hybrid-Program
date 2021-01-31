@@ -1,7 +1,13 @@
-import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import { Router } from '@angular/router';
+import { Component, OnInit, NgZone } from '@angular/core';
+import { AuthService } from '../auth.service';
+import * as firebase from 'firebase';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { UserService } from '../user.service';
+import { Observable } from 'rxjs';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-create-user-account',
@@ -17,17 +23,67 @@ export class CreateUserAccount implements OnInit {
   awaitingSignUp = false;
   signUpError: string | null = null;
 
-  constructor(private formBuilder: FormBuilder,  private router: Router) {
+  data : Observable<any> | undefined;
+  orderStatus = ""
+
+  constructor(private formBuilder: FormBuilder, private afAuth: AngularFireAuth, private router: Router, private authService : AuthService, public zone: NgZone, private userService : UserService, public dialogRef: MatDialogRef<CreateUserAccount>) {
     this.loginForm = this.formBuilder.group({
       name: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', [Validators.required, Validators.minLength(6)]]
     });
+
+
    }
 
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+
+    this.data = new Observable(observer => {
+
+      setTimeout(() => {
+        observer.next(`IN progress`);
+      }, 2000);
+
+      setTimeout(() => {
+        observer.next(`Processing`);
+      }, 5000);
+
+      setTimeout(() => {
+        observer.next(`Complete`);
+      }, 8000);
+
+    });
+    
+    this.data.subscribe(val => {
+      this.orderStatus = val as string;
+    });
+
+    
+    this.afAuth.onAuthStateChanged((user) => {
+      if(user){
+        if(user.uid != null){
+        //this.router.navigate(['dashboard']);
+        this.zone.run(() => { this.router.navigate(['/dashboard']); });
+        }
+      }
+    })
+
+    this.userService.getAllUsersListeners()
+    this.userService.test()?.subscribe(users => {
+      users.forEach(user => {
+        console.log(`here we go baby: name: ${user.name}, email: ${user.email}, userID: ${user.userId}`)
+      })
+    })
+    //this.userService.deleteUser("abc")
+    //this.userService.getAllUsers()
+      //this.userService.getUser("C5LcTlJfNELRcYFi67dx")
+      console.log("helloooo")
+    
+    
+    
+  }
 
   async signUp(name: string, email: string, password: string, confirmpassword: string) {
     
@@ -68,9 +124,28 @@ export class CreateUserAccount implements OnInit {
     }
 
     try {
+      this.awaitingSignIn = true;
+      this.signInError = null;
+      const authLogIn = await this.authService.signUpUser(email, password);
+      await this.userService.saveUser(authLogIn, name, email)
+      this.dialogRef.close()
+      //this.router.navigate(["/dashboard"]);
+      //window.alert(authLogIn)
+    }
+    catch (e) {
+      this.signInError = "Invalid credentials, please try again.";
+      //window.alert(e); 
+    }
+    finally {
+      this.awaitingSignIn = false;
+      //window.alert("finallyyyy"); 
+    }
+
+    /*
+    try {
       this.awaitingSignUp = true;
       this.signUpError = null;
-      this.router.navigate(["/verification"], { queryParams: { email } });
+      //this.router.navigate(["/verification"], { queryParams: { email } });
     }
     catch (e) {
       if (e == "InvalidParameterException" || e == "InvalidPasswordException" ) {
@@ -87,6 +162,9 @@ export class CreateUserAccount implements OnInit {
     finally {
       this.awaitingSignUp = false;
     }
+    */
+
+
   }
 
   async goToLogIn(){

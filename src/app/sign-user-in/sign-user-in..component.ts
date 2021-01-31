@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, NgZone } from '@angular/core';
+import { AuthService } from '../auth.service';
+import * as firebase from 'firebase';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { CreateUserAccount } from '../create-user-account/create-user-account.component';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-sign-user-in.',
@@ -15,7 +19,7 @@ export class SignUserIn implements OnInit {
   awaitingSignIn = false;
   signInError: string | null = null;
 
-  constructor(private formBuilder: FormBuilder, private router: Router) { 
+  constructor(private formBuilder: FormBuilder,  private afAuth: AngularFireAuth, private router: Router, private authService : AuthService, public zone: NgZone, public dialogRef: MatDialogRef<CreateUserAccount>) { 
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
@@ -24,11 +28,14 @@ export class SignUserIn implements OnInit {
   }
 
   ngOnInit():void {
-    this.loginForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', [Validators.required, Validators.minLength(6)]]
-    });
+    this.afAuth.onAuthStateChanged((user) => {
+      if(user){
+        if(user.uid != null){
+        //this.router.navigate(['dashboard']);
+        this.zone.run(() => { this.router.navigate(['/dashboard']); });
+        }
+      }
+    })
   }
 
   async signIn(email: string, password: string) {
@@ -41,13 +48,29 @@ export class SignUserIn implements OnInit {
         throw { message: "Please enter your password" };
       }
 
+      /*
       if(email && password){
         this.errorMessage = "You have entered a correct email and password";
       }
+      */
 
     }
     catch (err) {
       this.errorMessage = err.message;
+    }
+
+    try {
+      this.awaitingSignIn = true;
+      this.signInError = null;
+      await this.authService.LogInUser(email, password);
+      this.dialogRef.close()
+      //this.router.navigate(["/dashboard"]);
+    }
+    catch (e) {
+      this.signInError = "Invalid credentials, please try again.";
+    }
+    finally {
+      this.awaitingSignIn = false;
     }
     
   }

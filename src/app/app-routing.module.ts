@@ -7,6 +7,7 @@ import {ProgramsComponent} from './programs/programs.component';
 import { HomeComponent } from './home/home.component';
 import { SignUserIn } from './sign-user-in/sign-user-in..component';
 import { CreateUserAccount } from './create-user-account/create-user-account.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes = [
   {path: 'playarea', component: PlayareaComponent},
@@ -16,7 +17,8 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent},
   { path: 'create-account', component: SignUserIn},
   { path:'log-in', component: CreateUserAccount},
-  { path: '**', redirectTo: '/playarea' },];
+  { path: 'dashboard', component: DashboardComponent},
+  { path: '**', redirectTo: '/welcome' },];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
