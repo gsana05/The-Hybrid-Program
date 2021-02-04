@@ -28,14 +28,24 @@ export class SignUserIn implements OnInit {
   }
 
   ngOnInit():void {
+    console.log("on sign-in user");
+
+    /*
     this.afAuth.onAuthStateChanged((user) => {
       if(user){
         if(user.uid != null){
-        //this.router.navigate(['dashboard']);
-        this.zone.run(() => { this.router.navigate(['/dashboard']); });
+          console.log("userId (sign in compo): " + user.uid);
+          this.authService.setCurrentUserId(user.uid)
+          this.router.navigate(['dashboard']);
+          //this.zone.run(() => { this.router.navigate(['/dashboard']); });
+        }
+        else{
+          console.log("userId: not foundd");
         }
       }
     })
+    */
+
   }
 
   async signIn(email: string, password: string) {
@@ -64,7 +74,7 @@ export class SignUserIn implements OnInit {
       this.signInError = null;
       await this.authService.LogInUser(email, password);
       this.dialogRef.close()
-      //this.router.navigate(["/dashboard"]);
+      this.router.navigate(["/dashboard"]);
     }
     catch (e) {
       this.signInError = "Invalid credentials, please try again.";

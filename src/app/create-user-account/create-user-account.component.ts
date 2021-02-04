@@ -60,15 +60,17 @@ export class CreateUserAccount implements OnInit {
       this.orderStatus = val as string;
     });
 
-    
+    /*
     this.afAuth.onAuthStateChanged((user) => {
       if(user){
         if(user.uid != null){
+          this.authService.setCurrentUserId(user.uid)
         //this.router.navigate(['dashboard']);
         this.zone.run(() => { this.router.navigate(['/dashboard']); });
         }
       }
     })
+    */
 
     this.userService.getAllUsersListeners()
     this.userService.test()?.subscribe(users => {

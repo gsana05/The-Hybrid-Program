@@ -38,11 +38,13 @@ import { CreateUserAccount } from '../create-user-account/create-user-account.co
 export class WelcomeComponent implements OnInit {
 
   tabSelected = 1;
-  tabName = "tab1"
+  tabName = "tab1";
+
+  
 
   constructor(private dialog: MatDialog) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   async logInPopUp(){
     this.dialog.open(SignUserIn, {width: '80%', height: '60%'})

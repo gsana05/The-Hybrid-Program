@@ -10,9 +10,11 @@ import { AngularFireAuth } from '@angular/fire/auth';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class AuthService { 
 
-  constructor(private test : AngularFireAuth) { }
+  constructor(private test : AngularFireAuth) {
+    
+   }
 
   async signUpUser(email : string, password : string) : Promise<string> {
 
@@ -36,8 +38,10 @@ export class AuthService {
     }
   }
 
-  LogOutUser(){
+  async LogOutUser(){
+    
     const signout = this.test.signOut();
+    console.log("user has signed out ");
   }
 
 }

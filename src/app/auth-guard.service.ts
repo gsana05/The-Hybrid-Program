@@ -13,17 +13,22 @@ export class AuthGuardService implements CanActivate {
 
   
   public async canActivate(): Promise<boolean> {
-    /*
+    
     return new Promise((resolve, _reject) => {
-      this.authSvc.currentUser.pipe(map(user => !!user), take(1)).subscribe(isLoggedIn => {
-        if (!isLoggedIn) {
-          this.router.navigate(['login']);
-        }
-        resolve(isLoggedIn)
-      });
+
+      const userId = ""
+       
+      if(userId == null){
+        console.log("userId is undefined: " + userId); 
+        this.router.navigate(["/welcome"]);
+        resolve(false)
+      }
+      else{
+        console.log("userId found (auth-guard-service): " + userId); 
+        resolve(true)
+      }
+
     });
-    */
-   return true; 
   }
   
 }
