@@ -39,6 +39,7 @@ import { AngularFireAuthGuardModule } from '@angular/fire/auth-guard';
 import {environment} from "../environments/environment";
 import { DashboardComponent } from './dashboard/dashboard.component';
 import * as admin from "firebase-admin";
+import { FreeProgramComponent } from './free-program/free-program.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import * as admin from "firebase-admin";
     HomeComponent,
     SignUserIn,
     CreateUserAccount,
-    DashboardComponent
+    DashboardComponent,
+    FreeProgramComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,37 @@
+@import '~@angular/material/theming';
+@import '~../../theme.scss';
+
+.dashboard-container{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 100%;
+
+    .dashboard-container-1{
+        background-color: $background-color;;
+        flex: 0;
+        display: flex;
+
+        .dashboard-container-1-profile{
+            padding-top: 20px;
+            padding-bottom: 20px;
+            background-color: brown;
+            flex: 1;
+            text-align: center;
+
+            .settings-btn{
+                color: white;
+            }
+        }
+
+        .dashboard-container-1-navigation{
+            background-color: cadetblue;
+            flex: 5;
+        }
+    }
+
+    .dashboard-container-2{
+        flex: 1;
+    }
+
+}

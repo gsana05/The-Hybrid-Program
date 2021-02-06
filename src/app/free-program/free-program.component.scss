@@ -1,0 +1,19 @@
+
+.grid-container {
+    display: flex;
+    flex-wrap: wrap;
+    grid-template-columns: auto auto auto;
+    height: 100%;
+    min-height: 100%;
+
+    .grid-item  {
+        flex: 21%; /* explanation below */
+        margin: 5px;
+        background-color: blue;
+        border: 1px solid rgba(0, 0, 0, 0.8);
+        padding: 20px;
+        font-size: 30px;
+        text-align: center;
+    }
+}
+
