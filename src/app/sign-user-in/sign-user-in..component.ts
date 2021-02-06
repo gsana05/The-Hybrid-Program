@@ -27,26 +27,7 @@ export class SignUserIn implements OnInit {
     });
   }
 
-  ngOnInit():void {
-    console.log("on sign-in user");
-
-    /*
-    this.afAuth.onAuthStateChanged((user) => {
-      if(user){
-        if(user.uid != null){
-          console.log("userId (sign in compo): " + user.uid);
-          this.authService.setCurrentUserId(user.uid)
-          this.router.navigate(['dashboard']);
-          //this.zone.run(() => { this.router.navigate(['/dashboard']); });
-        }
-        else{
-          console.log("userId: not foundd");
-        }
-      }
-    })
-    */
-
-  }
+  ngOnInit():void {}
 
   async signIn(email: string, password: string) {
 

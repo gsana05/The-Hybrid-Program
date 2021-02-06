@@ -40,6 +40,9 @@ import {environment} from "../environments/environment";
 import { DashboardComponent } from './dashboard/dashboard.component';
 import * as admin from "firebase-admin";
 import { FreeProgramComponent } from './free-program/free-program.component';
+import { AdvancedProgramComponent } from './advanced-program/advanced-program.component';
+import { StatisticsComponent } from './statistics/statistics.component';
+import { SettingsComponent } from './settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +55,10 @@ import { FreeProgramComponent } from './free-program/free-program.component';
     SignUserIn,
     CreateUserAccount,
     DashboardComponent,
-    FreeProgramComponent
+    FreeProgramComponent,
+    AdvancedProgramComponent,
+    StatisticsComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,

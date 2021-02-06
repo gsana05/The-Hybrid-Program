@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
+import {MatTabChangeEvent} from '@angular/material/tabs';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,27 +11,40 @@ import { AngularFireAuth } from '@angular/fire/auth';
 })
 export class DashboardComponent implements OnInit {
 
+  tabSelected = 1;
+  tabName = "tab1";
+
   constructor(private authService : AuthService, private router: Router, private afAuth: AngularFireAuth) { }
 
-  ngOnInit(): void {
-    console.log("on the dashboard");
-  
-    /*
-    this.afAuth.onAuthStateChanged((user) => {
-      if(user){
-        if(user.uid != null){
-          console.log("userId (sign in compo): " + user.uid);
-          this.authService.setCurrentUserId(user.uid)
-          //this.zone.run(() => { this.router.navigate(['/dashboard']); });
-        }
-        else{
-          console.log("userId: not foundd");
-          this.authService.setCurrentUserIdToNull()
-          this.router.navigate(['welcome']);
-        }
-      }
-    })
-    */
+  ngOnInit(): void {}
+
+  async openSettings(){
+    this.router.navigate(['settings']);
+  }
+
+  async onTabChange(event: MatTabChangeEvent) {
+    this.tabName = event.tab.textLabel;   
+    
+
+    switch(this.tabName) { 
+      case "tab1": { 
+        this.tabSelected = 1
+        break; 
+      } 
+      case "tab2": { 
+        this.tabSelected = 2
+        break; 
+      } 
+      case "tab3": { 
+        this.tabSelected = 3
+        break; 
+     }  
+      default: { 
+         //statements; 
+         break; 
+      } 
+   } 
+
   }
 
   async logOut() {

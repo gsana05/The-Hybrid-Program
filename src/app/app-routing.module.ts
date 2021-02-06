@@ -13,6 +13,9 @@ import { AngularFireAuthGuard, redirectLoggedInTo, redirectUnauthorizedTo } from
 import { pipe } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { FreeProgramComponent } from './free-program/free-program.component';
+import { AdvancedProgramComponent } from './advanced-program/advanced-program.component';
+import { StatisticsComponent } from './statistics/statistics.component';
+import { SettingsComponent } from './settings/settings.component';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['welcome']);
 
@@ -37,9 +40,13 @@ const routes: Routes = [
   //{ path:'log-in', component: CreateUserAccount, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectToDashboardWithLogger}},
   { path: 'dashboard', component: DashboardComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin},
     children:[
-      { path: 'free-program', component: FreeProgramComponent}
+      { path: 'free-program', component: FreeProgramComponent},
+      { path: 'advanced-program', component: AdvancedProgramComponent}, 
+      { path: 'statistics', component: StatisticsComponent}, 
     ]
   },
+
+  {path: 'settings', component: SettingsComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin}},
   
   { path: 'welcome', component: WelcomeComponent,
    canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectToDashboardWithLogger},

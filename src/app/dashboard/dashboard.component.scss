@@ -8,14 +8,13 @@
     min-height: 100%;
 
     .dashboard-container-1{
-        background-color: $background-color;;
+        background-color: $background-color;
         flex: 0;
         display: flex;
 
         .dashboard-container-1-profile{
             padding-top: 20px;
             padding-bottom: 20px;
-            background-color: brown;
             flex: 1;
             text-align: center;
 
@@ -25,13 +24,89 @@
         }
 
         .dashboard-container-1-navigation{
-            background-color: cadetblue;
-            flex: 5;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            flex: 3;
         }
+
+        .dashboard-container-1-logo{
+            padding-top: 20px;
+            padding-bottom: 20px;
+            flex: 1;
+            text-align: center;
+
+            .settings-btn{
+                color: white;
+            }
+        }
+
+        @media (max-width: 768px) {  
+            flex-direction: column;
+
+            .dashboard-container-1-logo{
+                padding-top: 0px;
+                padding-bottom: 0px;
+                order: 1;
+            }
+
+
+            .dashboard-container-1-profile{
+                padding-top: 0px;
+                padding-bottom: 0px;
+                order: 2;
+            }
+    
+            .dashboard-container-1-navigation{
+                padding-top: 0px;
+                padding-bottom: 0px;
+                order: 3;
+            }
+
+        }
+
     }
 
-    .dashboard-container-2{
+    .dashboard-container-free-program{
         flex: 1;
     }
 
+    .dashboard-container-advanced-program{
+        flex: 1;
+    }
+
+    .dashboard-container-statistics{
+        flex: 1;
+    }
+
+}
+
+// remove bottom underline on mat tabs
+.remove-border-bottom ::ng-deep .mat-tab-header {
+    border-bottom: none;
+}
+
+// colour of active underline on mat tab bar
+::ng-deep .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar{
+    background: $background-border-color;
+} 
+
+//text color on mat tab when selected
+::ng-deep .mat-tab-label-active {
+    color: $background-border-color !important;
+} 
+
+//text color on mat tab when not selected
+::ng-deep .mat-tab-label{
+    color: $background-border-color !important;
+}
+
+// stop active tab from being greyed out 
+::ng-deep .mat-tab-label.mat-tab-label-active {
+    opacity: 1;
+}
+
+// change font on mat tabs 
+::ng-deep .mat-tab-label .mat-tab-label-content {
+    font-size: large;
+    font-weight: bold;
 }

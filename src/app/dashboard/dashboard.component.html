@@ -3,22 +3,55 @@
     <div class="dashboard-container-1">
 
         <div class="dashboard-container-1-profile">
-            <button class="settings-btn" mat-icon-button>
+            <button class="settings-btn" mat-icon-button (click)="openSettings()">
                 <mat-icon>settings</mat-icon>
               </button>
-              
+              <!--
             <button mat-flat-button color="warn" (click)="logOut()">Logout </button>
-            
+              -->
         </div>
 
         <div class="dashboard-container-1-navigation">
-            
+            <mat-tab-group class="remove-border-bottom" mat-align-tabs="center" #tabGroup (selectedTabChange)="onTabChange($event)">
+
+                <mat-tab *ngIf="true" label="tab1">
+                    <ng-template mat-tab-label>
+                      Begginner Program
+                  </ng-template>
+                    
+                  </mat-tab>
+        
+                  <mat-tab *ngIf="true" label="tab2">
+                    <ng-template mat-tab-label>
+                          Advanced Program
+                     </ng-template>
+                 </mat-tab>
+    
+                 <mat-tab *ngIf="true" label="tab3">
+                  <ng-template mat-tab-label>
+                        Statistics
+                   </ng-template>
+               </mat-tab>
+                
+            </mat-tab-group>
+        </div>
+
+        <div class="dashboard-container-1-logo">
+            <h1>The Hybrid Plan</h1>
         </div>
 
     </div>
 
-    <div class="dashboard-container-2">
+    <div class="dashboard-container-free-program" *ngIf="tabSelected === 1">
         <app-free-program></app-free-program>
+    </div>
+
+    <div class="dashboard-container-advanced-program" *ngIf="tabSelected === 2">
+        <app-advanced-program></app-advanced-program>
+    </div>
+
+    <div class="dashboard-container-statistics" *ngIf="tabSelected === 3">
+        <app-statistics></app-statistics>
     </div>
 
 </div>
