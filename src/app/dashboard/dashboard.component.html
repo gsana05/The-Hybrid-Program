@@ -12,7 +12,8 @@
         </div>
 
         <div class="dashboard-container-1-navigation">
-            <mat-tab-group class="remove-border-bottom" mat-align-tabs="center" #tabGroup (selectedTabChange)="onTabChange($event)">
+
+            <mat-tab-group class="remove-border-bottom" mat-align-tabs="center" #tabGroup (selectedTabChange)="onTabChange($event)" [selectedIndex]="getSelectedIndex()">
 
                 <mat-tab *ngIf="true" label="tab1">
                     <ng-template mat-tab-label>
