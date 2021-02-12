@@ -131,7 +131,7 @@ export class CreateUserAccount implements OnInit {
       const authLogIn = await this.authService.signUpUser(email, password);
       await this.userService.saveUser(authLogIn, name, email)
       this.dialogRef.close()
-      //this.router.navigate(["/dashboard"]);
+      this.router.navigate(["/dashboard"]);
       //window.alert(authLogIn)
     }
     catch (e) {

@@ -68,6 +68,13 @@
 
     .dashboard-container-free-program{
         flex: 1;
+        display: flex;
+        .dashboard-container-free-program-container{
+            flex: 1;
+        }
+        .dashboard-container-join-program-container{
+            flex: 1;
+        }
     }
 
     .dashboard-container-advanced-program{

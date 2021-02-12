@@ -6,9 +6,9 @@
             <button class="settings-btn" mat-icon-button (click)="openSettings()">
                 <mat-icon>settings</mat-icon>
               </button>
-              <!--
+              
             <button mat-flat-button color="warn" (click)="logOut()">Logout </button>
-              -->
+              
         </div>
 
         <div class="dashboard-container-1-navigation">
@@ -44,7 +44,13 @@
     </div>
 
     <div class="dashboard-container-free-program" *ngIf="tabSelected === 1">
-        <app-free-program></app-free-program>
+        <div class="dashboard-container-free-program-container" *ngIf="hasOpenProgram === true">
+            <app-free-program></app-free-program>
+        </div>
+        <div class="dashboard-container-join-program-container" *ngIf="hasOpenProgram === false">
+            <button mat-flat-button class="submit-btn register-now-btn" color="primary" (click)="joinFreeProgram()">Join a program</button>
+        </div>
+        
     </div>
 
     <div class="dashboard-container-advanced-program" *ngIf="tabSelected === 2">

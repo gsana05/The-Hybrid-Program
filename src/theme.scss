@@ -112,7 +112,7 @@ $hybrid-app-theme: mat-dark-theme($primary-palette, $accent-palette, $warn-palet
 
 // Edit the background colour, which mat-light-theme has chosen for us
 $background: map-get($hybrid-app-theme, background);
-$background-color: #232324;
+$background-color: #0C0D0F;
 $background: map_merge($background, (background: $background-color));
 $hybrid-app-theme: map_merge($hybrid-app-theme, (background: $background));
 

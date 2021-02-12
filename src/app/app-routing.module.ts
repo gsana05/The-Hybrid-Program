@@ -8,7 +8,6 @@ import { HomeComponent } from './home/home.component';
 import { SignUserIn } from './sign-user-in/sign-user-in..component';
 import { CreateUserAccount } from './create-user-account/create-user-account.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { AuthGuardService } from './auth-guard.service';
 import { AngularFireAuthGuard, redirectLoggedInTo, redirectUnauthorizedTo } from '@angular/fire/auth-guard'
 import { pipe } from 'rxjs';
 import { tap } from 'rxjs/operators';

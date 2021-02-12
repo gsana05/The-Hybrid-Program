@@ -19,7 +19,7 @@ export class SignUserIn implements OnInit {
   awaitingSignIn = false;
   signInError: string | null = null;
 
-  constructor(private formBuilder: FormBuilder,  private afAuth: AngularFireAuth, private router: Router, private authService : AuthService, public zone: NgZone, public dialogRef: MatDialogRef<CreateUserAccount>) { 
+  constructor(private formBuilder: FormBuilder, private router: Router, private authService : AuthService, public zone: NgZone, public dialogRef: MatDialogRef<CreateUserAccount>) { 
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
