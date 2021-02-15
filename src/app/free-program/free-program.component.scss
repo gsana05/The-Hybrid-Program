@@ -5,6 +5,8 @@
     grid-template-columns: auto auto auto;
     height: 100%;
     min-height: 100%;
+    position: relative;
+
 
     .grid-item  {
         flex: 21%; /* explanation below */
@@ -24,6 +26,10 @@
         flex-direction: column;
     }
 
+}
+
+mat-card-header{
+    justify-content: center;
 }
 
 ::ng-deep .mat-card{

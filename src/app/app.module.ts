@@ -43,6 +43,8 @@ import { FreeProgramComponent } from './free-program/free-program.component';
 import { AdvancedProgramComponent } from './advanced-program/advanced-program.component';
 import { StatisticsComponent } from './statistics/statistics.component';
 import { SettingsComponent } from './settings/settings.component';
+import { JoinFreeProgramComponent } from './join-free-program/join-free-program.component';
+import { VideoComponent } from './video/video.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +60,9 @@ import { SettingsComponent } from './settings/settings.component';
     FreeProgramComponent,
     AdvancedProgramComponent,
     StatisticsComponent,
-    SettingsComponent
+    SettingsComponent,
+    JoinFreeProgramComponent,
+    VideoComponent
   ],
   imports: [
     BrowserModule,
