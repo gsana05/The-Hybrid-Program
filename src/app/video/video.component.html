@@ -1,7 +1,25 @@
 
 
-<div class="video-container">
-    <p>{{videoURL}}</p>
-    <iframe class="vimeo-iframe" [src]="safeUrl" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe> 
+<div class="main-container">
+
+    <div class="header">
+        <button mat-icon-button [mat-dialog-close]="true" class="heading-close">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+
+
+    <div class="video-container">
+
+        <div class="video-container-heading">
+            <iframe class="vimeo-iframe" [src]="safeUrl" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe> 
+        </div>
+
+        <div class="video-container-video">
+
+            
+        </div>
+
+    </div>
 
 </div>
