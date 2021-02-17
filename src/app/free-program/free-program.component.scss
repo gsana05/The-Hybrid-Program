@@ -16,6 +16,19 @@
         padding: 20px;
         font-size: 30px;
         text-align: center;
+        
+
+        .exercise{
+            display: flex;
+            .exercise-info{
+                flex: 1;
+                text-align: left;
+            }
+            .exercise-more-info{
+                flex: 0;
+            }
+        }
+
     }
 
     @media (max-width: 1024px) {  
@@ -27,6 +40,13 @@
     }
 
 }
+
+.completed{
+    color:white;
+    font-weight: bold;
+    background-color: rgb(86, 172, 0);
+}
+
 
 mat-card-header{
     justify-content: center;
