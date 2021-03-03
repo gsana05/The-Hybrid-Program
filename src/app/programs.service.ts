@@ -43,11 +43,15 @@ export class ProgramsService {
     this.afs.firestore.collection("users").doc(userId).collection("programs").add(FreeProgram)
   }
 
+  async updateFreeProgram(userId : string, freeProgram : FreeProgram){
+    this.afs.firestore.collection("users").doc(userId).collection("programs").doc(freeProgram.programId).set(freeProgram)
+  }
+
   async addFreeProgramListenerSnapshotValues(){
     this.testPrograms = this.afs.collection("users").doc(this.userID).collection("programs").snapshotChanges().pipe(map(action => {
       return action.map(a => {
         const data = a.payload.doc.data() as FreeProgram;
-        data.userId = a.payload.doc.id;
+        data.programId = a.payload.doc.id;
         return data; 
       })
     }));

@@ -5,7 +5,7 @@ import { UserService } from '../user.service';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 import {MatTab, MatTabChangeEvent} from '@angular/material/tabs';
-import { User, FreeProgram, Message } from '../types';
+import { User, FreeProgram, Message, Cycles } from '../types';
 import { FreeProgramComponent } from '../free-program/free-program.component';
 import { Subscription } from 'rxjs';
 
@@ -19,9 +19,15 @@ import { Subscription } from 'rxjs';
 export class DashboardComponent implements OnInit {
 
   program : FreeProgram = {
+    programId : "",
     userId : "",
     enrolled : false,
-    date : new Date()
+    date : new Date(),
+    cycles :  Array<Cycles>(),
+    currentCycleCount : 0,
+    totalCompletedSessions : 0,
+    totalCompletedCycles : 0,
+    totalMissedSessions : 0
   }
 
   tabSelected = 3;
@@ -83,6 +89,12 @@ async joinFreeProgram(){
     if(this.userId != null){
       this.program.enrolled = true;
       this.program.date = new Date();
+      this.program.userId = this.userId
+
+      this.program.totalCompletedSessions = 0;
+      this.program.totalCompletedCycles = 0;
+      this.program.currentCycleCount = 0;
+
       await this.programService.joinFreePrgram(this.userId, this.program);
       window.alert("success");
     }

@@ -5,9 +5,27 @@ export interface User {
 }
 
 export interface FreeProgram {
-    userId? : string,
+    programId? : string;
+    userId? : string;
     enrolled : boolean;
-    date : Date
+    date : Date; 
+    cycles :  Array<Cycles>;
+    currentCycleCount : number;
+    totalCompletedCycles : number;
+    totalCompletedSessions : number;
+    totalMissedSessions : number
+}
+
+export interface Cycles {
+    cycleId : number;
+    sessionTrackerMissed : Array<Workout>;
+    sessionTrackerCompleted :  Array<Workout>;
+}
+
+export interface Workout {
+    date : Date; 
+    sessionNumber : Number; 
+    sessionType : Number;
 }
 
 export interface Message {

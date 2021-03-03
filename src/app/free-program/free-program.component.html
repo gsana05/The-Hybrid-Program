@@ -20,7 +20,7 @@
         </div>
 
         <div class="exercise-more-info">
-          <button mat-flat-button color="warn" (click)="openVideo()">Key info</button>
+          <button mat-flat-button (click)="squatDemo()">Key info</button>
         </div>
 
       </div>
@@ -32,7 +32,7 @@
         </div>
 
         <div class="exercise-more-info">
-          <button mat-flat-button color="warn" (click)="openVideo()">Key info</button>
+          <button mat-flat-button (click)="benchPressDemo()">Key info</button>
         </div>
 
       </div>
@@ -44,12 +44,13 @@
         </div>
 
         <div class="exercise-more-info">
-          <button mat-flat-button color="warn" (click)="openVideo()">Key info</button>
+          <button mat-flat-button (click)="openVideo()">Key info</button>
         </div>
 
       </div>
 
-      <button mat-flat-button class="submit-btn completed" (click)="openVideo()">Completed</button>
+      <button mat-flat-button class="submit-btn completed" (click)="updateWorkout(0, 0, true)">Completed</button>
+      <button mat-flat-button class="submit-btn missed-session" color="warn" (click)="updateWorkout(0, 0, false)">Missed Session</button>
 
     </mat-card-content>
     
@@ -104,7 +105,8 @@
 
       </div>
 
-      <button mat-flat-button class="submit-btn completed" (click)="openVideo()">Completed</button>
+      <button mat-flat-button class="submit-btn completed" (click)="updateWorkout(1, 1, true)">Completed</button>
+      <button mat-flat-button class="submit-btn missed-session" color="warn" (click)="updateWorkout(1, 1, false)">Missed Session</button>
 
     </mat-card-content>
     
