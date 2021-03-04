@@ -1,0 +1,52 @@
+<div class="grid-container">
+    <div class="header">
+        <button mat-icon-button [mat-dialog-close]="true" class="heading-close">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+    <div  class="grid-item">
+
+        <h1 style="font-weight: bold;">DAY ONE</h1>
+        <mat-card-title>5K, Push and core</mat-card-title>
+
+        <div class="exercise">
+
+            <div class="exercise-info">
+            <h2>Bench Press 5x5</h2>
+            </div>
+
+            <div class="exercise-more-info">
+            <button mat-flat-button color="primary" (click)="squatDemo()">Key info</button>
+            </div>
+
+        </div>
+
+        <div class="exercise">
+
+            <div class="exercise-info">
+            <h2>Isometric core</h2>
+            </div>
+
+            <div class="exercise-more-info">
+            <button mat-flat-button color="primary" (click)="benchPressDemo()">Key info</button>
+            </div>
+
+        </div>
+
+        <div class="exercise">
+
+            <div class="exercise-info">
+            <h2>5k easy run</h2>
+            </div>
+
+            <div class="exercise-more-info">
+            <button mat-flat-button color="primary" (click)="openVideo()">Key info</button>
+            </div>
+
+        </div>
+
+        <button mat-flat-button class="workout-btn completed" (click)="updateWorkout(sessionNumber, sessionType, true)">Completed</button>
+        <button mat-flat-button class="workout-btn missed-session" color="warn" (click)="updateWorkout(sessionNumber, sessionType, false)">Missed</button>
+        
+    </div>
+</div>

@@ -16,6 +16,7 @@ import { AdvancedProgramComponent } from './advanced-program/advanced-program.co
 import { StatisticsComponent } from './statistics/statistics.component';
 import { SettingsComponent } from './settings/settings.component';
 import { JoinFreeProgramComponent } from './join-free-program/join-free-program.component';
+import { WorkoutComponent } from './workout/workout.component';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['welcome']);
 
@@ -43,7 +44,11 @@ const routes: Routes = [
       { path: 'free-program', component: FreeProgramComponent},
       { path: 'advanced-program', component: AdvancedProgramComponent}, 
       { path: 'statistics', component: StatisticsComponent}, 
-      {path: 'join-free-program', component: JoinFreeProgramComponent}
+      {path: 'join-free-program', component: JoinFreeProgramComponent,
+        children:[
+          { path: 'workout', component: WorkoutComponent}
+        ]
+      }
     ]
   },
 

@@ -16,7 +16,10 @@ import { environment} from '../../environments/environment';
 import {StripeCheckoutLoader, StripeCheckoutHandler} from 'ng-stripe-checkout';
 import {StripeCheckoutModule} from 'ng-stripe-checkout';
 import { Session } from 'protractor';
+import { ThrowStmt } from '@angular/compiler';
 
+import { CreateUserAccount } from '../create-user-account/create-user-account.component';
+import { WorkoutComponent } from '../workout/workout.component';
 
 
 @Component({
@@ -45,9 +48,53 @@ export class FreeProgramComponent implements OnInit {
   //stripePromise = loadStripe(environment.stripe_key);
   //priceId = "price_1IN1kKHLz4JOaSbM5OtkxEdd"
 
+  openWorkout = 1
+  missedWorkout = 2
+  completedWorkout = 3
+
   url: string | undefined;
   userId: string | null = null;
   snapshotChanges : Subscription | undefined; 
+  workoutIds = Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27);
+
+  isWorkoutZeroCompleted = this.openWorkout; 
+  isWorkoutOneCompleted = this.openWorkout;
+  isWorkoutTwoCompleted = this.openWorkout;
+  isWorkoutThreeCompleted = this.openWorkout;
+  isWorkoutFourCompleted = this.openWorkout;
+  isWorkoutFiveCompleted = this.openWorkout;
+  isWorkoutSixCompleted = this.openWorkout;
+  isWorkoutSevenCompleted = this.openWorkout;
+  isWorkoutEightCompleted = this.openWorkout;
+  isWorkoutNineCompleted = this.openWorkout;
+  isWorkoutTenCompleted = this.openWorkout;
+  isWorkoutElevenCompleted = this.openWorkout;
+  isWorkoutTwelveCompleted = this.openWorkout;
+  isWorkoutThirteenCompleted = this.openWorkout;
+  isWorkoutFourteenCompleted = this.openWorkout;
+  isWorkoutFifteenCompleted = this.openWorkout;
+  isWorkoutSixteenCompleted = this.openWorkout;
+  isWorkoutSeventeenCompleted = this.openWorkout;
+  isWorkoutEighteenCompleted = this.openWorkout;
+  isWorkoutNineteenCompleted = this.openWorkout;
+  isWorkoutTwentyCompleted = this.openWorkout;
+  isWorkoutTwentyOneCompleted = this.openWorkout;
+  isWorkoutTwentyTwoCompleted = this.openWorkout;
+  isWorkoutTwentyThreeCompleted = this.openWorkout;
+  isWorkoutTwentyFourCompleted = this.openWorkout;
+  isWorkoutTwentyFiveCompleted = this.openWorkout;
+  isWorkoutTwentySixCompleted = this.openWorkout;
+  isWorkoutTwentySevenCompleted = this.openWorkout;
+
+
+
+
+  workoutTest = 1;
+  stretchAndCore = 2;
+  running = 3;
+  resistance = 4;
+  runningAndResistance = 5; 
+  rest = 6; 
 
   //StripeCheckout: StripeCheckoutStatic | undefined;
 
@@ -76,7 +123,8 @@ export class FreeProgramComponent implements OnInit {
     this.snapshotChanges = this.programService.testingPrograms()?.subscribe(programs => {
       programs.map(data => {
         //window.alert("doc id: " + data.programId)
-        this.program = data 
+        this.program = data
+        this.updateUI()
       })
     });
 
@@ -123,6 +171,169 @@ export class FreeProgramComponent implements OnInit {
   }
   */
 
+ async openWorkoutDay(sessionNumber : number, sessionType : number){
+  this.dialog.open(WorkoutComponent, {width: '90%', height: '90%', data:{
+    sessionNumber: sessionNumber,
+    sessionType: sessionType
+  }})
+}
+
+  updateUI(){
+
+    var listOfCompletedIds = Array<Number>();
+    var listOfMissedIds = Array<Number>();
+
+    this.program.cycles.forEach(data => {
+      
+      if(data.cycleId == this.program.currentCycleCount){
+        this.workoutIds.forEach(workoutIdNumber => {
+
+          const valueCompleted = data.sessionTrackerCompleted[workoutIdNumber - 1]
+          if(valueCompleted != null){
+            listOfCompletedIds.push(valueCompleted.sessionNumber)
+          }
+
+          const valueMissed = data.sessionTrackerMissed[workoutIdNumber - 1]
+          if(valueMissed != null){
+            listOfMissedIds.push(valueMissed.sessionNumber)
+          }
+          
+        })
+        
+      }
+    })
+
+    listOfMissedIds.forEach(data => {
+
+      switch (data) {
+        case 0: this.isWorkoutZeroCompleted = this.missedWorkout;
+            break;
+        case 1: this.isWorkoutOneCompleted = this.missedWorkout;
+            break;
+        case 2: this.isWorkoutTwoCompleted = this.missedWorkout;
+            break;
+        case 3: this.isWorkoutThreeCompleted = this.missedWorkout;
+            break;
+        case 4: this.isWorkoutFourCompleted = this.missedWorkout;
+            break;
+        case 5: this.isWorkoutFiveCompleted = this.missedWorkout;
+            break;
+        case 6: this.isWorkoutSixCompleted = this.missedWorkout;
+            break;
+        case 7: this.isWorkoutSevenCompleted = this.missedWorkout;
+            break;
+        case 8: this.isWorkoutEightCompleted = this.missedWorkout;
+            break;
+        case 9: this.isWorkoutNineCompleted = this.missedWorkout;
+            break;
+        case 10: this.isWorkoutTenCompleted = this.missedWorkout;
+            break;
+        case 11: this.isWorkoutElevenCompleted = this.missedWorkout;
+            break;
+        case 12: this.isWorkoutTwelveCompleted = this.missedWorkout;
+            break;
+        case 13: this.isWorkoutThirteenCompleted = this.missedWorkout;
+            break;
+        case 14: this.isWorkoutFourteenCompleted = this.missedWorkout;
+            break;
+        case 15: this.isWorkoutFifteenCompleted = this.missedWorkout;
+            break;
+        case 16: this.isWorkoutSixteenCompleted = this.missedWorkout;
+            break;
+        case 17: this.isWorkoutSeventeenCompleted = this.missedWorkout;
+            break;
+        case 18: this.isWorkoutEighteenCompleted = this.missedWorkout;
+            break;
+        case 19: this.isWorkoutNineteenCompleted = this.missedWorkout;
+            break;
+        case 20: this.isWorkoutTwentyCompleted = this.missedWorkout;
+            break;
+        case 21: this.isWorkoutTwentyOneCompleted = this.missedWorkout;
+            break;
+        case 22: this.isWorkoutTwentyTwoCompleted = this.missedWorkout;
+            break;
+        case 23: this.isWorkoutTwentyThreeCompleted = this.missedWorkout;
+            break;
+        case 24: this.isWorkoutTwentyFourCompleted = this.missedWorkout;
+            break;
+        case 25: this.isWorkoutTwentyFiveCompleted = this.missedWorkout;
+            break;
+        case 26: this.isWorkoutTwentySixCompleted = this.missedWorkout;
+            break;
+        case 27: this.isWorkoutTwentySevenCompleted  = this.missedWorkout;
+            break;
+        default:
+            //default block statement;
+    }
+    })
+
+    listOfCompletedIds.forEach(data => {
+
+      switch (data) {
+        case 0: this.isWorkoutZeroCompleted = this.completedWorkout;
+            break;
+        case 1: this.isWorkoutOneCompleted = this.completedWorkout;
+            break;
+        case 2: this.isWorkoutTwoCompleted = this.completedWorkout;
+            break;
+        case 3: this.isWorkoutThreeCompleted = this.completedWorkout;
+            break;
+        case 4: this.isWorkoutFourCompleted = this.completedWorkout;
+            break;
+        case 5: this.isWorkoutFiveCompleted = this.completedWorkout;
+            break;
+        case 6: this.isWorkoutSixCompleted = this.completedWorkout;
+            break;
+        case 7: this.isWorkoutSevenCompleted = this.completedWorkout;
+            break;
+        case 8: this.isWorkoutEightCompleted = this.completedWorkout;
+            break;
+        case 9: this.isWorkoutNineCompleted = this.completedWorkout;
+            break;
+        case 10: this.isWorkoutTenCompleted = this.completedWorkout;
+            break;
+        case 11: this.isWorkoutElevenCompleted = this.completedWorkout;
+            break;
+        case 12: this.isWorkoutTwelveCompleted = this.completedWorkout;
+            break;
+        case 13: this.isWorkoutThirteenCompleted = this.completedWorkout;
+            break;
+        case 14: this.isWorkoutFourteenCompleted = this.completedWorkout;
+            break;
+        case 15: this.isWorkoutFifteenCompleted = this.completedWorkout;
+            break;
+        case 16: this.isWorkoutSixteenCompleted = this.completedWorkout;
+            break;
+        case 17: this.isWorkoutSeventeenCompleted = this.completedWorkout;
+            break;
+        case 18: this.isWorkoutEighteenCompleted = this.completedWorkout;
+            break;
+        case 19: this.isWorkoutNineteenCompleted = this.completedWorkout;
+            break;
+        case 20: this.isWorkoutTwentyCompleted = this.completedWorkout;
+            break;
+        case 21: this.isWorkoutTwentyOneCompleted = this.completedWorkout;
+            break;
+        case 22: this.isWorkoutTwentyTwoCompleted = this.completedWorkout;
+            break;
+        case 23: this.isWorkoutTwentyThreeCompleted = this.completedWorkout;
+            break;
+        case 24: this.isWorkoutTwentyFourCompleted = this.completedWorkout;
+            break;
+        case 25: this.isWorkoutTwentyFiveCompleted = this.completedWorkout;
+            break;
+        case 26: this.isWorkoutTwentySixCompleted = this.completedWorkout;
+            break;
+        case 27: this.isWorkoutTwentySevenCompleted = this.completedWorkout;
+            break;
+        default:
+            //default block statement;
+    }
+    })
+
+    //window.alert("values completed: " + listOfCompletedIds.length + "\n values missed: " + listOfMissedIds.length);
+  }
+
   async updateWorkout(sessionNumber : number, sessionType : number, workoutStatus : Boolean){
 
     try{
@@ -131,8 +342,8 @@ export class FreeProgramComponent implements OnInit {
 
           var openCycle : Cycles = {
             cycleId : 0,
-            sessionTrackerMissed : Array(),
-            sessionTrackerCompleted :  Array()
+            sessionTrackerMissed : Array<Workout>(),
+            sessionTrackerCompleted :  Array<Workout>()
         }
 
           // find the current open cycle 

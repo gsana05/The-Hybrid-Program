@@ -1,10 +1,29 @@
 <div class="grid-container">
 
-  <mat-card class="grid-item mat-elevation-z0 outline">
+  <!-- ZERO -->
+  <mat-card [ngClass]="{'grid-item': isWorkoutZeroCompleted == 1, 'grid-item-missed' : isWorkoutZeroCompleted == 2, 'grid-item-completed': isWorkoutZeroCompleted == 3}">
 
     <mat-card-header>
-      <mat-card-title style="font-weight: bold;">DAY ONE</mat-card-title>
-      <mat-card-title>5K, Push and core</mat-card-title>
+
+
+      <mat-card-title style="font-weight: bold;">DAY 1 - Testing</mat-card-title>
+    
+    </mat-card-header>
+
+    <mat-card-content>
+
+      <button mat-flat-button class="workout-btn completed" (click)="openWorkoutDay(0, workoutTest)">Workout</button>
+
+    </mat-card-content>
+    
+  </mat-card>
+
+  <!-- ONE -->
+
+  <mat-card [ngClass]="{'grid-item': isWorkoutOneCompleted == 1, 'grid-item-missed' : isWorkoutOneCompleted == 2, 'grid-item-completed': isWorkoutOneCompleted == 3}">
+
+    <mat-card-header>
+      <mat-card-title style="font-weight: bold;">DAY 2 - Stretch &amp; core</mat-card-title>
       <!--
       <button mat-flat-button class="submit-btn register-now-btn" color="primary" (click)="openVideo()">See example</button>
       -->
@@ -13,54 +32,17 @@
 
     <mat-card-content>
 
-      <div class="exercise">
-
-        <div class="exercise-info">
-          <h2>Bench Press 5x5</h2>
-        </div>
-
-        <div class="exercise-more-info">
-          <button mat-flat-button (click)="squatDemo()">Key info</button>
-        </div>
-
-      </div>
-
-      <div class="exercise">
-
-        <div class="exercise-info">
-          <h2>Isometric core</h2>
-        </div>
-
-        <div class="exercise-more-info">
-          <button mat-flat-button (click)="benchPressDemo()">Key info</button>
-        </div>
-
-      </div>
-
-      <div class="exercise">
-
-        <div class="exercise-info">
-          <h2>5k easy run</h2>
-        </div>
-
-        <div class="exercise-more-info">
-          <button mat-flat-button (click)="openVideo()">Key info</button>
-        </div>
-
-      </div>
-
-      <button mat-flat-button class="submit-btn completed" (click)="updateWorkout(0, 0, true)">Completed</button>
-      <button mat-flat-button class="submit-btn missed-session" color="warn" (click)="updateWorkout(0, 0, false)">Missed Session</button>
+      <button mat-flat-button class="workout-btn completed" (click)="openWorkoutDay(1, stretchAndCore)">Workout</button>
 
     </mat-card-content>
     
   </mat-card>
 
-  <mat-card class="grid-item mat-elevation-z0 outline">
+  <!-- TWO -->
+  <mat-card [ngClass]="{'grid-item': isWorkoutTwoCompleted == 1, 'grid-item-missed' : isWorkoutTwoCompleted == 2, 'grid-item-completed': isWorkoutTwoCompleted == 3}">
 
     <mat-card-header>
-      <mat-card-title style="font-weight: bold;">DAY ONE</mat-card-title>
-      <mat-card-title>5K, Push and core</mat-card-title>
+      <mat-card-title style="font-weight: bold;">DAY 3 - Running</mat-card-title>
       <!--
       <button mat-flat-button class="submit-btn register-now-btn" color="primary" (click)="openVideo()">See example</button>
       -->
@@ -69,54 +51,17 @@
 
     <mat-card-content>
 
-      <div class="exercise">
-
-        <div class="exercise-info">
-          <h2>Bench Press 5x5</h2>
-        </div>
-
-        <div class="exercise-more-info">
-          <button mat-flat-button color="warn" (click)="openVideo()">Key info</button>
-        </div>
-
-      </div>
-
-      <div class="exercise">
-
-        <div class="exercise-info">
-          <h2>Isometric core</h2>
-        </div>
-
-        <div class="exercise-more-info">
-          <button mat-flat-button color="warn" (click)="openVideo()">Key info</button>
-        </div>
-
-      </div>
-
-      <div class="exercise">
-
-        <div class="exercise-info">
-          <h2>5k easy run</h2>
-        </div>
-
-        <div class="exercise-more-info">
-          <button mat-flat-button color="warn" (click)="openVideo()">Key info</button>
-        </div>
-
-      </div>
-
-      <button mat-flat-button class="submit-btn completed" (click)="updateWorkout(1, 1, true)">Completed</button>
-      <button mat-flat-button class="submit-btn missed-session" color="warn" (click)="updateWorkout(1, 1, false)">Missed Session</button>
+      <button mat-flat-button class="workout-btn completed" (click)="openWorkoutDay(2, running)">Workout</button>
 
     </mat-card-content>
     
   </mat-card>
 
-  <mat-card class="grid-item mat-elevation-z0 outline">
+  <!-- THREE -->
+  <mat-card [ngClass]="{'grid-item': isWorkoutThreeCompleted == 1, 'grid-item-missed' : isWorkoutThreeCompleted == 2, 'grid-item-completed': isWorkoutThreeCompleted == 3}">
 
     <mat-card-header>
-      <mat-card-title style="font-weight: bold;">DAY ONE</mat-card-title>
-      <mat-card-title>5K, Push and core</mat-card-title>
+      <mat-card-title style="font-weight: bold;">DAY 4 - Resistance</mat-card-title>
       <!--
       <button mat-flat-button class="submit-btn register-now-btn" color="primary" (click)="openVideo()">See example</button>
       -->
@@ -125,53 +70,17 @@
 
     <mat-card-content>
 
-      <div class="exercise">
-
-        <div class="exercise-info">
-          <h2>Bench Press 5x5</h2>
-        </div>
-
-        <div class="exercise-more-info">
-          <button mat-flat-button color="warn" (click)="openVideo()">Key info</button>
-        </div>
-
-      </div>
-
-      <div class="exercise">
-
-        <div class="exercise-info">
-          <h2>Isometric core</h2>
-        </div>
-
-        <div class="exercise-more-info">
-          <button mat-flat-button color="warn" (click)="openVideo()">Key info</button>
-        </div>
-
-      </div>
-
-      <div class="exercise">
-
-        <div class="exercise-info">
-          <h2>5k easy run</h2>
-        </div>
-
-        <div class="exercise-more-info">
-          <button mat-flat-button color="warn" (click)="openVideo()">Key info</button>
-        </div>
-
-      </div>
+      <button mat-flat-button class="workout-btn completed" (click)="openWorkoutDay(3, resistance)">Workout</button>
 
     </mat-card-content>
-
-    <button mat-flat-button class="submit-btn completed" (click)="openVideo()">Completed</button>
     
   </mat-card>
 
-  <mat-card class="grid-item mat-elevation-z0 outline">
+  <!-- FOUR -->
+  <mat-card [ngClass]="{'grid-item': isWorkoutFourCompleted == 1, 'grid-item-missed' : isWorkoutFourCompleted == 2, 'grid-item-completed': isWorkoutFourCompleted == 3}">
 
     <mat-card-header>
-      <mat-card-title style="font-weight: bold;">DAY ONE</mat-card-title>
-      <mat-card-title>5K, Push and core</mat-card-title>
+      <mat-card-title style="font-weight: bold;">DAY 5 - REST</mat-card-title>
       <!--
       <button mat-flat-button class="submit-btn register-now-btn" color="primary" (click)="openVideo()">See example</button>
       -->
@@ -180,53 +89,17 @@
 
     <mat-card-content>
 
-      <div class="exercise">
-
-        <div class="exercise-info">
-          <h2>Bench Press 5x5</h2>
-        </div>
-
-        <div class="exercise-more-info">
-          <button mat-flat-button color="warn" (click)="openVideo()">Key info</button>
-        </div>
-
-      </div>
-
-      <div class="exercise">
-
-        <div class="exercise-info">
-          <h2>Isometric core</h2>
-        </div>
-
-        <div class="exercise-more-info">
-          <button mat-flat-button color="warn" (click)="openVideo()">Key info</button>
-        </div>
-
-      </div>
-
-      <div class="exercise">
-
-        <div class="exercise-info">
-          <h2>5k easy run</h2>
-        </div>
-
-        <div class="exercise-more-info">
-          <button mat-flat-button color="warn" (click)="openVideo()">Key info</button>
-        </div>
-
-      </div>
+      <button mat-flat-button class="workout-btn completed" (click)="openWorkoutDay(4, rest)">Workout</button>
 
     </mat-card-content>
-
-    <button mat-flat-button class="submit-btn completed" (click)="openVideo()">Completed</button>
     
   </mat-card>
 
-  <mat-card class="grid-item mat-elevation-z0 outline">
+  <!-- FIVE -->
+  <mat-card [ngClass]="{'grid-item': isWorkoutFiveCompleted == 1, 'grid-item-missed' : isWorkoutFiveCompleted == 2, 'grid-item-completed': isWorkoutFiveCompleted == 3}">
 
     <mat-card-header>
-      <mat-card-title style="font-weight: bold;">DAY ONE</mat-card-title>
-      <mat-card-title>5K, Push and core</mat-card-title>
+      <mat-card-title style="font-weight: bold;">DAY 6 - Resistance &amp; running</mat-card-title>
       <!--
       <button mat-flat-button class="submit-btn register-now-btn" color="primary" (click)="openVideo()">See example</button>
       -->
@@ -235,53 +108,37 @@
 
     <mat-card-content>
 
-      <div class="exercise">
-
-        <div class="exercise-info">
-          <h2>Bench Press 5x5</h2>
-        </div>
-
-        <div class="exercise-more-info">
-          <button mat-flat-button color="warn" (click)="openVideo()">Key info</button>
-        </div>
-
-      </div>
-
-      <div class="exercise">
-
-        <div class="exercise-info">
-          <h2>Isometric core</h2>
-        </div>
-
-        <div class="exercise-more-info">
-          <button mat-flat-button color="warn" (click)="openVideo()">Key info</button>
-        </div>
-
-      </div>
-
-      <div class="exercise">
-
-        <div class="exercise-info">
-          <h2>5k easy run</h2>
-        </div>
-
-        <div class="exercise-more-info">
-          <button mat-flat-button color="warn" (click)="openVideo()">Key info</button>
-        </div>
-
-      </div>
+      <button mat-flat-button class="workout-btn completed" (click)="openWorkoutDay(5, runningAndResistance)">Workout</button>
 
     </mat-card-content>
-
-    <button mat-flat-button class="submit-btn completed" (click)="openVideo()">Completed</button>
     
   </mat-card>
 
-  <mat-card class="grid-item mat-elevation-z0 outline">
+  <!-- SIX NEED SETTING UP-->
+     <!-- SIX -->
+  <mat-card [ngClass]="{'grid-item': isWorkoutSixCompleted == 1, 'grid-item-missed' : isWorkoutSixCompleted == 2, 'grid-item-completed': isWorkoutSixCompleted == 3}">
 
     <mat-card-header>
-      <mat-card-title style="font-weight: bold;">DAY ONE</mat-card-title>
-      <mat-card-title>5K, Push and core</mat-card-title>
+
+
+      <mat-card-title style="font-weight: bold;">DAY 7 - Testing</mat-card-title>
+    
+    </mat-card-header>
+
+    <mat-card-content>
+
+      <button mat-flat-button class="workout-btn completed" (click)="openWorkoutDay(6, workoutTest)">Workout</button>
+
+    </mat-card-content>
+    
+  </mat-card>
+
+  <!-- SEVEN -->
+
+  <mat-card [ngClass]="{'grid-item': isWorkoutSevenCompleted == 1, 'grid-item-missed' : isWorkoutSevenCompleted == 2, 'grid-item-completed': isWorkoutSevenCompleted == 3}">
+
+    <mat-card-header>
+      <mat-card-title style="font-weight: bold;">DAY 8 - Stretch &amp; core</mat-card-title>
       <!--
       <button mat-flat-button class="submit-btn register-now-btn" color="primary" (click)="openVideo()">See example</button>
       -->
@@ -290,53 +147,17 @@
 
     <mat-card-content>
 
-      <div class="exercise">
-
-        <div class="exercise-info">
-          <h2>Bench Press 5x5</h2>
-        </div>
-
-        <div class="exercise-more-info">
-          <button mat-flat-button color="warn" (click)="openVideo()">Key info</button>
-        </div>
-
-      </div>
-
-      <div class="exercise">
-
-        <div class="exercise-info">
-          <h2>Isometric core</h2>
-        </div>
-
-        <div class="exercise-more-info">
-          <button mat-flat-button color="warn" (click)="openVideo()">Key info</button>
-        </div>
-
-      </div>
-
-      <div class="exercise">
-
-        <div class="exercise-info">
-          <h2>5k easy run</h2>
-        </div>
-
-        <div class="exercise-more-info">
-          <button mat-flat-button color="warn" (click)="openVideo()">Key info</button>
-        </div>
-
-      </div>
+      <button mat-flat-button class="workout-btn completed" (click)="openWorkoutDay(7, stretchAndCore)">Workout</button>
 
     </mat-card-content>
-
-    <button mat-flat-button class="submit-btn completed" (click)="openVideo()">Completed</button>
     
   </mat-card>
 
-  <mat-card class="grid-item mat-elevation-z0 outline">
+  <!-- EIGHT -->
+  <mat-card [ngClass]="{'grid-item': isWorkoutEightCompleted == 1, 'grid-item-missed' : isWorkoutEightCompleted == 2, 'grid-item-completed': isWorkoutEightCompleted == 3}">
 
     <mat-card-header>
-      <mat-card-title style="font-weight: bold;">DAY ONE</mat-card-title>
-      <mat-card-title>5K, Push and core</mat-card-title>
+      <mat-card-title style="font-weight: bold;">DAY 9 - Running</mat-card-title>
       <!--
       <button mat-flat-button class="submit-btn register-now-btn" color="primary" (click)="openVideo()">See example</button>
       -->
@@ -345,53 +166,17 @@
 
     <mat-card-content>
 
-      <div class="exercise">
-
-        <div class="exercise-info">
-          <h2>Bench Press 5x5</h2>
-        </div>
-
-        <div class="exercise-more-info">
-          <button mat-flat-button color="warn" (click)="openVideo()">Key info</button>
-        </div>
-
-      </div>
-
-      <div class="exercise">
-
-        <div class="exercise-info">
-          <h2>Isometric core</h2>
-        </div>
-
-        <div class="exercise-more-info">
-          <button mat-flat-button color="warn" (click)="openVideo()">Key info</button>
-        </div>
-
-      </div>
-
-      <div class="exercise">
-
-        <div class="exercise-info">
-          <h2>5k easy run</h2>
-        </div>
-
-        <div class="exercise-more-info">
-          <button mat-flat-button color="warn" (click)="openVideo()">Key info</button>
-        </div>
-
-      </div>
+      <button mat-flat-button class="workout-btn completed" (click)="openWorkoutDay(8, running)">Workout</button>
 
     </mat-card-content>
-
-    <button mat-flat-button class="submit-btn completed" (click)="openVideo()">Completed</button>
     
   </mat-card>
 
-  <mat-card class="grid-item mat-elevation-z0 outline">
+  <!-- NINE -->
+  <mat-card [ngClass]="{'grid-item': isWorkoutNineCompleted == 1, 'grid-item-missed' : isWorkoutNineCompleted == 2, 'grid-item-completed': isWorkoutNineCompleted == 3}">
 
     <mat-card-header>
-      <mat-card-title style="font-weight: bold;">DAY ONE</mat-card-title>
-      <mat-card-title>5K, Push and core</mat-card-title>
+      <mat-card-title style="font-weight: bold;">DAY 10 - Resistance</mat-card-title>
       <!--
       <button mat-flat-button class="submit-btn register-now-btn" color="primary" (click)="openVideo()">See example</button>
       -->
@@ -400,53 +185,17 @@
 
     <mat-card-content>
 
-      <div class="exercise">
-
-        <div class="exercise-info">
-          <h2>Bench Press 5x5</h2>
-        </div>
-
-        <div class="exercise-more-info">
-          <button mat-flat-button color="warn" (click)="openVideo()">Key info</button>
-        </div>
-
-      </div>
-
-      <div class="exercise">
-
-        <div class="exercise-info">
-          <h2>Isometric core</h2>
-        </div>
-
-        <div class="exercise-more-info">
-          <button mat-flat-button color="warn" (click)="openVideo()">Key info</button>
-        </div>
-
-      </div>
-
-      <div class="exercise">
-
-        <div class="exercise-info">
-          <h2>5k easy run</h2>
-        </div>
-
-        <div class="exercise-more-info">
-          <button mat-flat-button color="warn" (click)="openVideo()">Key info</button>
-        </div>
-
-      </div>
+      <button mat-flat-button class="workout-btn completed" (click)="openWorkoutDay(9, resistance)">Workout</button>
 
     </mat-card-content>
-
-    <button mat-flat-button class="submit-btn completed" (click)="openVideo()">Completed</button>
     
   </mat-card>
 
-  <mat-card class="grid-item mat-elevation-z0 outline">
+  <!-- TEN -->
+  <mat-card [ngClass]="{'grid-item': isWorkoutTenCompleted == 1, 'grid-item-missed' : isWorkoutTenCompleted == 2, 'grid-item-completed': isWorkoutTenCompleted == 3}">
 
     <mat-card-header>
-      <mat-card-title style="font-weight: bold;">DAY ONE</mat-card-title>
-      <mat-card-title>5K, Push and core</mat-card-title>
+      <mat-card-title style="font-weight: bold;">DAY 11 - REST</mat-card-title>
       <!--
       <button mat-flat-button class="submit-btn register-now-btn" color="primary" (click)="openVideo()">See example</button>
       -->
@@ -455,53 +204,17 @@
 
     <mat-card-content>
 
-      <div class="exercise">
-
-        <div class="exercise-info">
-          <h2>Bench Press 5x5</h2>
-        </div>
-
-        <div class="exercise-more-info">
-          <button mat-flat-button color="warn" (click)="openVideo()">Key info</button>
-        </div>
-
-      </div>
-
-      <div class="exercise">
-
-        <div class="exercise-info">
-          <h2>Isometric core</h2>
-        </div>
-
-        <div class="exercise-more-info">
-          <button mat-flat-button color="warn" (click)="openVideo()">Key info</button>
-        </div>
-
-      </div>
-
-      <div class="exercise">
-
-        <div class="exercise-info">
-          <h2>5k easy run</h2>
-        </div>
-
-        <div class="exercise-more-info">
-          <button mat-flat-button color="warn" (click)="openVideo()">Key info</button>
-        </div>
-
-      </div>
+      <button mat-flat-button class="workout-btn completed" (click)="openWorkoutDay(10, rest)">Workout</button>
 
     </mat-card-content>
-
-    <button mat-flat-button class="submit-btn completed" (click)="openVideo()">Completed</button>
     
   </mat-card>
 
-  <mat-card class="grid-item mat-elevation-z0 outline">
+  <!-- ELEVEN -->
+  <mat-card [ngClass]="{'grid-item': isWorkoutElevenCompleted == 1, 'grid-item-missed' : isWorkoutElevenCompleted == 2, 'grid-item-completed': isWorkoutElevenCompleted == 3}">
 
     <mat-card-header>
-      <mat-card-title style="font-weight: bold;">DAY ONE</mat-card-title>
-      <mat-card-title>5K, Push and core</mat-card-title>
+      <mat-card-title style="font-weight: bold;">DAY 12 - Resistance &amp; running</mat-card-title>
       <!--
       <button mat-flat-button class="submit-btn register-now-btn" color="primary" (click)="openVideo()">See example</button>
       -->
@@ -510,53 +223,36 @@
 
     <mat-card-content>
 
-      <div class="exercise">
-
-        <div class="exercise-info">
-          <h2>Bench Press 5x5</h2>
-        </div>
-
-        <div class="exercise-more-info">
-          <button mat-flat-button color="warn" (click)="openVideo()">Key info</button>
-        </div>
-
-      </div>
-
-      <div class="exercise">
-
-        <div class="exercise-info">
-          <h2>Isometric core</h2>
-        </div>
-
-        <div class="exercise-more-info">
-          <button mat-flat-button color="warn" (click)="openVideo()">Key info</button>
-        </div>
-
-      </div>
-
-      <div class="exercise">
-
-        <div class="exercise-info">
-          <h2>5k easy run</h2>
-        </div>
-
-        <div class="exercise-more-info">
-          <button mat-flat-button color="warn" (click)="openVideo()">Key info</button>
-        </div>
-
-      </div>
+      <button mat-flat-button class="workout-btn completed" (click)="openWorkoutDay(11, runningAndResistance)">Workout</button>
 
     </mat-card-content>
-
-    <button mat-flat-button class="submit-btn completed" (click)="openVideo()">Completed</button>
     
   </mat-card>
 
-  <mat-card class="grid-item mat-elevation-z0 outline">
+   <!-- TWELVE -->
+   <mat-card [ngClass]="{'grid-item': isWorkoutTwelveCompleted == 1, 'grid-item-missed' : isWorkoutTwelveCompleted == 2, 'grid-item-completed': isWorkoutTwelveCompleted == 3}">
 
     <mat-card-header>
-      <mat-card-title style="font-weight: bold;">DAY ONE</mat-card-title>
-      <mat-card-title>5K, Push and core</mat-card-title>
+
+
+      <mat-card-title style="font-weight: bold;">DAY 13 - Testing</mat-card-title>
+    
+    </mat-card-header>
+
+    <mat-card-content>
+
+      <button mat-flat-button class="workout-btn completed" (click)="openWorkoutDay(12, workoutTest)">Workout</button>
+
+    </mat-card-content>
+    
+  </mat-card>
+
+  <!-- THIRTEEN -->
+
+  <mat-card [ngClass]="{'grid-item': isWorkoutThirteenCompleted == 1, 'grid-item-missed' : isWorkoutThirteenCompleted == 2, 'grid-item-completed': isWorkoutThirteenCompleted == 3}">
+
+    <mat-card-header>
+      <mat-card-title style="font-weight: bold;">DAY 14 - Stretch &amp; core</mat-card-title>
       <!--
       <button mat-flat-button class="submit-btn register-now-btn" color="primary" (click)="openVideo()">See example</button>
       -->
@@ -565,53 +261,17 @@
 
     <mat-card-content>
 
-      <div class="exercise">
-
-        <div class="exercise-info">
-          <h2>Bench Press 5x5</h2>
-        </div>
-
-        <div class="exercise-more-info">
-          <button mat-flat-button color="warn" (click)="openVideo()">Key info</button>
-        </div>
-
-      </div>
-
-      <div class="exercise">
-
-        <div class="exercise-info">
-          <h2>Isometric core</h2>
-        </div>
-
-        <div class="exercise-more-info">
-          <button mat-flat-button color="warn" (click)="openVideo()">Key info</button>
-        </div>
-
-      </div>
-
-      <div class="exercise">
-
-        <div class="exercise-info">
-          <h2>5k easy run</h2>
-        </div>
-
-        <div class="exercise-more-info">
-          <button mat-flat-button color="warn" (click)="openVideo()">Key info</button>
-        </div>
-
-      </div>
+      <button mat-flat-button class="workout-btn completed" (click)="openWorkoutDay(13, stretchAndCore)">Workout</button>
 
     </mat-card-content>
-
-    <button mat-flat-button class="submit-btn completed" (click)="openVideo()">Completed</button>
     
   </mat-card>
 
-  <mat-card class="grid-item mat-elevation-z0 outline">
+  <!-- FOURTEEN -->
+  <mat-card [ngClass]="{'grid-item': isWorkoutFourteenCompleted == 1, 'grid-item-missed' : isWorkoutFourteenCompleted == 2, 'grid-item-completed': isWorkoutFourteenCompleted == 3}">
 
     <mat-card-header>
-      <mat-card-title style="font-weight: bold;">DAY ONE</mat-card-title>
-      <mat-card-title>5K, Push and core</mat-card-title>
+      <mat-card-title style="font-weight: bold;">DAY 15 - Running</mat-card-title>
       <!--
       <button mat-flat-button class="submit-btn register-now-btn" color="primary" (click)="openVideo()">See example</button>
       -->
@@ -620,46 +280,261 @@
 
     <mat-card-content>
 
-      <div class="exercise">
-
-        <div class="exercise-info">
-          <h2>Bench Press 5x5</h2>
-        </div>
-
-        <div class="exercise-more-info">
-          <button mat-flat-button color="warn" (click)="openVideo()">Key info</button>
-        </div>
-
-      </div>
-
-      <div class="exercise">
-
-        <div class="exercise-info">
-          <h2>Isometric core</h2>
-        </div>
-
-        <div class="exercise-more-info">
-          <button mat-flat-button color="warn" (click)="openVideo()">Key info</button>
-        </div>
-
-      </div>
-
-      <div class="exercise">
-
-        <div class="exercise-info">
-          <h2>5k easy run</h2>
-        </div>
-
-        <div class="exercise-more-info">
-          <button mat-flat-button color="warn" (click)="openVideo()">Key info</button>
-        </div>
-
-      </div>
+      <button mat-flat-button class="workout-btn completed" (click)="openWorkoutDay(14, running)">Workout</button>
 
     </mat-card-content>
-
-    <button mat-flat-button class="submit-btn completed" (click)="openVideo()">Completed</button>
     
   </mat-card>
+
+  <!-- FIFTEEN -->
+  <mat-card [ngClass]="{'grid-item': isWorkoutFifteenCompleted == 1, 'grid-item-missed' : isWorkoutFifteenCompleted == 2, 'grid-item-completed': isWorkoutFifteenCompleted == 3}">
+
+    <mat-card-header>
+      <mat-card-title style="font-weight: bold;">DAY 16 - Resistance</mat-card-title>
+      <!--
+      <button mat-flat-button class="submit-btn register-now-btn" color="primary" (click)="openVideo()">See example</button>
+      -->
+
+    </mat-card-header>
+
+    <mat-card-content>
+
+      <button mat-flat-button class="workout-btn completed" (click)="openWorkoutDay(15, resistance)">Workout</button>
+
+    </mat-card-content>
+    
+  </mat-card>
+
+  <!-- SIXTEEN -->
+  <mat-card [ngClass]="{'grid-item': isWorkoutSixteenCompleted == 1, 'grid-item-missed' : isWorkoutSixteenCompleted == 2, 'grid-item-completed': isWorkoutSixteenCompleted == 3}">
+
+    <mat-card-header>
+      <mat-card-title style="font-weight: bold;">DAY 17 - REST</mat-card-title>
+      <!--
+      <button mat-flat-button class="submit-btn register-now-btn" color="primary" (click)="openVideo()">See example</button>
+      -->
+
+    </mat-card-header>
+
+    <mat-card-content>
+
+      <button mat-flat-button class="workout-btn completed" (click)="openWorkoutDay(16, rest)">Workout</button>
+
+    </mat-card-content>
+    
+  </mat-card>
+
+  <!-- SEVENTEEN -->
+  <mat-card [ngClass]="{'grid-item': isWorkoutSeventeenCompleted == 1, 'grid-item-missed' : isWorkoutSeventeenCompleted == 2, 'grid-item-completed': isWorkoutSeventeenCompleted == 3}">
+
+    <mat-card-header>
+      <mat-card-title style="font-weight: bold;">DAY 18 - Resistance &amp; running</mat-card-title>
+      <!--
+      <button mat-flat-button class="submit-btn register-now-btn" color="primary" (click)="openVideo()">See example</button>
+      -->
+
+    </mat-card-header>
+
+    <mat-card-content>
+
+      <button mat-flat-button class="workout-btn completed" (click)="openWorkoutDay(17, runningAndResistance)">Workout</button>
+
+    </mat-card-content>
+    
+  </mat-card>
+
+   <!-- EIGHTEEN -->
+   <mat-card [ngClass]="{'grid-item': isWorkoutEighteenCompleted == 1, 'grid-item-missed' : isWorkoutEighteenCompleted == 2, 'grid-item-completed': isWorkoutEighteenCompleted == 3}">
+
+    <mat-card-header>
+
+
+      <mat-card-title style="font-weight: bold;">DAY 19 - Testing</mat-card-title>
+    
+    </mat-card-header>
+
+    <mat-card-content>
+
+      <button mat-flat-button class="workout-btn completed" (click)="openWorkoutDay(18, workoutTest)">Workout</button>
+
+    </mat-card-content>
+    
+  </mat-card>
+
+  <!-- NINETEEN -->
+
+  <mat-card [ngClass]="{'grid-item': isWorkoutNineteenCompleted == 1, 'grid-item-missed' : isWorkoutNineteenCompleted == 2, 'grid-item-completed': isWorkoutNineteenCompleted == 3}">
+
+    <mat-card-header>
+      <mat-card-title style="font-weight: bold;">DAY 20 - Stretch &amp; core</mat-card-title>
+      <!--
+      <button mat-flat-button class="submit-btn register-now-btn" color="primary" (click)="openVideo()">See example</button>
+      -->
+
+    </mat-card-header>
+
+    <mat-card-content>
+
+      <button mat-flat-button class="workout-btn completed" (click)="openWorkoutDay(19, stretchAndCore)">Workout</button>
+
+    </mat-card-content>
+    
+  </mat-card>
+
+  <!-- TWENTY -->
+  <mat-card [ngClass]="{'grid-item': isWorkoutTwentyCompleted == 1, 'grid-item-missed' : isWorkoutTwentyCompleted == 2, 'grid-item-completed': isWorkoutTwentyCompleted == 3}">
+
+    <mat-card-header>
+      <mat-card-title style="font-weight: bold;">DAY 21 - Running</mat-card-title>
+      <!--
+      <button mat-flat-button class="submit-btn register-now-btn" color="primary" (click)="openVideo()">See example</button>
+      -->
+
+    </mat-card-header>
+
+    <mat-card-content>
+
+      <button mat-flat-button class="workout-btn completed" (click)="openWorkoutDay(20, running)">Workout</button>
+
+    </mat-card-content>
+    
+  </mat-card>
+
+  <!-- TWENTY ONE -->
+  <mat-card [ngClass]="{'grid-item': isWorkoutTwentyOneCompleted == 1, 'grid-item-missed' : isWorkoutTwentyOneCompleted == 2, 'grid-item-completed': isWorkoutTwentyOneCompleted == 3}">
+
+    <mat-card-header>
+      <mat-card-title style="font-weight: bold;">DAY 22 - Resistance</mat-card-title>
+      <!--
+      <button mat-flat-button class="submit-btn register-now-btn" color="primary" (click)="openVideo()">See example</button>
+      -->
+
+    </mat-card-header>
+
+    <mat-card-content>
+
+      <button mat-flat-button class="workout-btn completed" (click)="openWorkoutDay(21, resistance)">Workout</button>
+
+    </mat-card-content>
+    
+  </mat-card>
+
+  <!-- TWENTY TWO -->
+  <mat-card [ngClass]="{'grid-item': isWorkoutTwentyTwoCompleted == 1, 'grid-item-missed' : isWorkoutTwentyTwoCompleted == 2, 'grid-item-completed': isWorkoutTwentyTwoCompleted == 3}">
+
+    <mat-card-header>
+      <mat-card-title style="font-weight: bold;">DAY 23 - REST</mat-card-title>
+      <!--
+      <button mat-flat-button class="submit-btn register-now-btn" color="primary" (click)="openVideo()">See example</button>
+      -->
+
+    </mat-card-header>
+
+    <mat-card-content>
+
+      <button mat-flat-button class="workout-btn completed" (click)="openWorkoutDay(22, rest)">Workout</button>
+
+    </mat-card-content>
+    
+  </mat-card>
+
+  <!-- TWENTY THREE -->
+  <mat-card [ngClass]="{'grid-item': isWorkoutTwentyThreeCompleted == 1, 'grid-item-missed' : isWorkoutTwentyThreeCompleted == 2, 'grid-item-completed': isWorkoutTwentyThreeCompleted == 3}">
+
+    <mat-card-header>
+      <mat-card-title style="font-weight: bold;">DAY 24 - Resistance &amp; running</mat-card-title>
+      <!--
+      <button mat-flat-button class="submit-btn register-now-btn" color="primary" (click)="openVideo()">See example</button>
+      -->
+
+    </mat-card-header>
+
+    <mat-card-content>
+
+      <button mat-flat-button class="workout-btn completed" (click)="openWorkoutDay(23, runningAndResistance)">Workout</button>
+
+    </mat-card-content>
+    
+  </mat-card>
+
+   <!-- TWENTY FOUR -->
+   <mat-card [ngClass]="{'grid-item': isWorkoutTwentyFourCompleted == 1, 'grid-item-missed' : isWorkoutTwentyFourCompleted == 2, 'grid-item-completed': isWorkoutTwentyFourCompleted == 3}">
+
+    <mat-card-header>
+
+
+      <mat-card-title style="font-weight: bold;">DAY 25 - Testing</mat-card-title>
+    
+    </mat-card-header>
+
+    <mat-card-content>
+
+      <button mat-flat-button class="workout-btn completed" (click)="openWorkoutDay(24, workoutTest)">Workout</button>
+
+    </mat-card-content>
+    
+  </mat-card>
+
+  <!-- TWENTY FIVE -->
+
+  <mat-card [ngClass]="{'grid-item': isWorkoutTwentyFiveCompleted == 1, 'grid-item-missed' : isWorkoutTwentyFiveCompleted == 2, 'grid-item-completed': isWorkoutTwentyFiveCompleted == 3}">
+
+    <mat-card-header>
+      <mat-card-title style="font-weight: bold;">DAY 26 - Stretch &amp; core</mat-card-title>
+      <!--
+      <button mat-flat-button class="submit-btn register-now-btn" color="primary" (click)="openVideo()">See example</button>
+      -->
+
+    </mat-card-header>
+
+    <mat-card-content>
+
+      <button mat-flat-button class="workout-btn completed" (click)="openWorkoutDay(25, stretchAndCore)">Workout</button>
+
+    </mat-card-content>
+    
+  </mat-card>
+
+  <!-- TWENTY SIX -->
+  <mat-card [ngClass]="{'grid-item': isWorkoutTwentySixCompleted == 1, 'grid-item-missed' : isWorkoutTwentySixCompleted == 2, 'grid-item-completed': isWorkoutTwentySixCompleted == 3}">
+
+    <mat-card-header>
+      <mat-card-title style="font-weight: bold;">DAY 27 - Running</mat-card-title>
+      <!--
+      <button mat-flat-button class="submit-btn register-now-btn" color="primary" (click)="openVideo()">See example</button>
+      -->
+
+    </mat-card-header>
+
+    <mat-card-content>
+
+      <button mat-flat-button class="workout-btn completed" (click)="openWorkoutDay(26, running)">Workout</button>
+
+    </mat-card-content>
+    
+  </mat-card>
+
+  <!-- TWENTY SEVEN -->
+  <mat-card [ngClass]="{'grid-item': isWorkoutTwentySevenCompleted == 1, 'grid-item-missed' : isWorkoutTwentySevenCompleted == 2, 'grid-item-completed': isWorkoutTwentySevenCompleted == 3}">
+
+    <mat-card-header>
+      <mat-card-title style="font-weight: bold;">DAY 28 - Resistance</mat-card-title>
+      <!--
+      <button mat-flat-button class="submit-btn register-now-btn" color="primary" (click)="openVideo()">See example</button>
+      -->
+
+    </mat-card-header>
+
+    <mat-card-content>
+
+      <button mat-flat-button class="workout-btn completed" (click)="openWorkoutDay(27, resistance)">Workout</button>
+
+    </mat-card-content>
+    
+  </mat-card>
+
+ 
+
+
 
 </div>
