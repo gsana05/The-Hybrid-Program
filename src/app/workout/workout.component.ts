@@ -34,12 +34,68 @@ export class WorkoutComponent implements OnInit {
   sessionNumber = -1;
   sessionType = -1; 
 
+  workoutType = "";
+
+  exerciseOne = "";
+  exerciseTwo = "";
+  exerciseThree = "";
+  exerciseFour = "";
+
+  demoExerciseOne = "";
+  demoExerciseTwo = "";
+  demoExerciseThree = "";
+  demoExerciseFour = "";
+
+  example = "Example"
+
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialog: MatDialog,  private programService : ProgramsService, private afAuth: AngularFireAuth) {
 
 
     //window.alert("session number: " + data["sessionNumber"] + " session type: " + data["sessionType"]);
-    this.sessionNumber = data["sessionNumber"];
+    this.sessionNumber = data["sessionNumber"] + 1;
     this.sessionType = data["sessionType"]; 
+
+    switch(this.sessionType){
+      case 1: 
+      this.workoutType = "TESTING"
+      if(this.sessionNumber == 1){
+        this.exerciseOne = "5k race test";
+        this.exerciseTwo = "Plank";
+        this.exerciseThree = "Press ups";
+        this.exerciseFour = "Squats";
+
+        this.demoExerciseOne = this.example;
+        this.demoExerciseTwo = this.example;
+        this.demoExerciseThree = this.example;
+        this.demoExerciseFour = this.example;
+      }
+
+        break;
+
+      case 2: 
+      this.workoutType = "STRETCH AND CORE";
+      if(this.sessionNumber == 2){
+        this.exerciseOne = "Dynamic stretching";
+        this.demoExerciseOne = this.example;
+      }
+    
+        break;
+
+      case 3: this.workoutType = "RUNNING"
+        break;
+
+      case 4: this.workoutType = "RESISTANCE"
+        break;
+
+      case 5: this.workoutType = "RUNNING AND RESISTANCE"
+        break;
+
+      case 6: this.workoutType = "REST"
+        break;
+      default:
+            //default block statement;
+    }
+
 
     this.afAuth.currentUser.then(user => {
       if(user != null){

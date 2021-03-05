@@ -49,7 +49,7 @@ export class FreeProgramComponent implements OnInit {
   //stripePromise = loadStripe(environment.stripe_key);
   //priceId = "price_1IN1kKHLz4JOaSbM5OtkxEdd"
 
-  numberOfWorkoutsPerCycle = 20;
+  numberOfWorkoutsPerCycle = 28;
   openWorkout = 1;
   missedWorkout = 2;
   completedWorkout = 3;

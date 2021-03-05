@@ -6,17 +6,17 @@
     </div>
     <div  class="grid-item">
 
-        <h1 style="font-weight: bold;">DAY ONE</h1>
-        <mat-card-title>5K, Push and core</mat-card-title>
+        <h1 style="font-weight: bold;">DAY {{sessionNumber}}</h1>
+        <mat-card-title>{{workoutType}}</mat-card-title>
 
         <div class="exercise">
 
             <div class="exercise-info">
-            <h2>Bench Press 5x5</h2>
+            <h2>{{exerciseOne}}</h2>
             </div>
 
             <div class="exercise-more-info">
-            <button mat-flat-button color="primary" (click)="squatDemo()">Key info</button>
+            <button mat-flat-button color="primary" (click)="squatDemo()">{{demoExerciseOne}}</button>
             </div>
 
         </div>
@@ -24,11 +24,11 @@
         <div class="exercise">
 
             <div class="exercise-info">
-            <h2>Isometric core</h2>
+            <h2>{{exerciseTwo}}</h2>
             </div>
 
             <div class="exercise-more-info">
-            <button mat-flat-button color="primary" (click)="benchPressDemo()">Key info</button>
+            <button mat-flat-button color="primary" (click)="benchPressDemo()">{{demoExerciseTwo}}</button>
             </div>
 
         </div>
@@ -36,11 +36,23 @@
         <div class="exercise">
 
             <div class="exercise-info">
-            <h2>5k easy run</h2>
+            <h2>{{exerciseThree}}</h2>
             </div>
 
             <div class="exercise-more-info">
-            <button mat-flat-button color="primary" (click)="openVideo()">Key info</button>
+            <button mat-flat-button color="primary" (click)="openVideo()">{{demoExerciseThree}}</button>
+            </div>
+
+        </div>
+
+        <div class="exercise">
+
+            <div class="exercise-info">
+            <h2>{{exerciseFour}}</h2>
+            </div>
+
+            <div class="exercise-more-info">
+            <button mat-flat-button color="primary" (click)="openVideo()">{{demoExerciseFour}}</button>
             </div>
 
         </div>
