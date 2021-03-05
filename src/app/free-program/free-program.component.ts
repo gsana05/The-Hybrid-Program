@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, HostListener } from '@angular/core';
 import { from } from 'rxjs';
 import { VideoComponent } from '../video/video.component';
+import { FreeProgramCompletedComponent } from '../free-program-completed/free-program-completed.component'
 import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from '../auth.service';
 import { ProgramsService } from '../programs.service';
@@ -48,9 +49,10 @@ export class FreeProgramComponent implements OnInit {
   //stripePromise = loadStripe(environment.stripe_key);
   //priceId = "price_1IN1kKHLz4JOaSbM5OtkxEdd"
 
-  openWorkout = 1
-  missedWorkout = 2
-  completedWorkout = 3
+  numberOfWorkoutsPerCycle = 20;
+  openWorkout = 1;
+  missedWorkout = 2;
+  completedWorkout = 3;
 
   url: string | undefined;
   userId: string | null = null;
@@ -123,8 +125,14 @@ export class FreeProgramComponent implements OnInit {
     this.snapshotChanges = this.programService.testingPrograms()?.subscribe(programs => {
       programs.map(data => {
         //window.alert("doc id: " + data.programId)
-        this.program = data
-        this.updateUI()
+        this.program = data;
+        this.updateUI();
+        const isComplete = this.checkCycleIsCompleted()
+        if(this.checkCycleIsCompleted()){
+        if(this.dialog.openDialogs.length == 0){
+          this.dialog.open(FreeProgramCompletedComponent, {width: '90%', height: '90%'});
+        }
+        }
       })
     });
 
@@ -171,11 +179,43 @@ export class FreeProgramComponent implements OnInit {
   }
   */
 
+checkCycleIsCompleted() : Boolean {
+
+  var isCycleComplete = false; 
+
+  this.program.currentCycleCount
+
+  this.program.cycles.forEach(data => {
+    if(data.cycleId == this.program.currentCycleCount){
+      const missed = data.sessionTrackerMissed.length;
+      const completed = data.sessionTrackerCompleted.length;
+
+      const total = missed + completed
+
+      if(total >= this.numberOfWorkoutsPerCycle){
+        //window.alert("sessions done: " + total + " const session number: " + this.numberOfWorkoutsPerCycle);
+        isCycleComplete = true 
+      }
+
+    }
+  })
+
+  return isCycleComplete;
+}
+
  async openWorkoutDay(sessionNumber : number, sessionType : number){
-  this.dialog.open(WorkoutComponent, {width: '90%', height: '90%', data:{
-    sessionNumber: sessionNumber,
-    sessionType: sessionType
-  }})
+
+
+  if(this.checkCycleIsCompleted()){
+    this.dialog.open(FreeProgramCompletedComponent, {width: '90%', height: '90%'});
+  }
+  else{
+    this.dialog.open(WorkoutComponent, {width: '90%', height: '90%', data:{
+      sessionNumber: sessionNumber,
+      sessionType: sessionType
+    }})
+  }
+  
 }
 
   updateUI(){
@@ -336,78 +376,83 @@ export class FreeProgramComponent implements OnInit {
 
   async updateWorkout(sessionNumber : number, sessionType : number, workoutStatus : Boolean){
 
-    try{
-      if(this.userId != null){
-        if(this.program.programId != null){
-
-          var openCycle : Cycles = {
-            cycleId : 0,
-            sessionTrackerMissed : Array<Workout>(),
-            sessionTrackerCompleted :  Array<Workout>()
-        }
-
-          // find the current open cycle 
+    if(this.checkCycleIsCompleted()){
+      window.alert("CYCLE IS COMPLETE");
+    }
+    else{
+      try{
+        if(this.userId != null){
+          if(this.program.programId != null){
+  
+            var openCycle : Cycles = {
+              cycleId : 0,
+              sessionTrackerMissed : Array<Workout>(),
+              sessionTrackerCompleted :  Array<Workout>()
+          }
+  
+            // find the current open cycle 
+            
+            this.program.cycles.forEach(data => {
+              if(data.cycleId == this.program.currentCycleCount){
+                openCycle = data 
+              }
+            })   
+  
+  
+            var currentOpenCompleted = null;
+            openCycle.sessionTrackerCompleted.forEach(dataCompleted => {
+              if(dataCompleted.sessionNumber == sessionNumber){
+                currentOpenCompleted = true; 
+              }
+            })
+  
+            var currentOpenMissed = null;
+            openCycle.sessionTrackerMissed.forEach(dataMissed => {
+              if(dataMissed.sessionNumber == sessionNumber){
+                currentOpenMissed = true; 
+              }
+            })
+  
+            if(currentOpenCompleted == true){
+              window.alert("You have already completed this sesssion");
+            }
+            else if(currentOpenMissed == true){
+              window.alert("You have set this session to missed");
+            }
+            else {
+  
+              const workout : Workout = {
+                date : new Date(),
+                sessionNumber : sessionNumber,
+                sessionType : sessionType
+              } 
+              
+              if(workoutStatus == true){
+                this.program.totalCompletedSessions = this.program.totalCompletedSessions + 1
+                openCycle.sessionTrackerCompleted?.push(workout)
+  
+              }
+              else{
+                this.program.totalMissedSessions = this.program.totalMissedSessions + 1
+                 openCycle.sessionTrackerMissed?.push(workout)
+              }
+              
+              await this.programService.updateFreeProgram(this.userId, this.program);
+              window.alert("success");
+  
+            }
+        
+          }
+          else{
+            window.alert("program id is null");
+          }
           
-          this.program.cycles.forEach(data => {
-            if(data.cycleId == this.program.currentCycleCount){
-              openCycle = data 
-            }
-          })   
-
-
-          var currentOpenCompleted = null;
-          openCycle.sessionTrackerCompleted.forEach(dataCompleted => {
-            if(dataCompleted.sessionNumber == sessionNumber){
-              currentOpenCompleted = true; 
-            }
-          })
-
-          var currentOpenMissed = null;
-          openCycle.sessionTrackerMissed.forEach(dataMissed => {
-            if(dataMissed.sessionNumber == sessionNumber){
-              currentOpenMissed = true; 
-            }
-          })
-
-          if(currentOpenCompleted == true){
-            window.alert("You have already completed this sesssion");
-          }
-          else if(currentOpenMissed == true){
-            window.alert("You have set this session to missed");
-          }
-          else {
-
-            const workout : Workout = {
-              date : new Date(),
-              sessionNumber : sessionNumber,
-              sessionType : sessionType
-            } 
-            
-            if(workoutStatus == true){
-              this.program.totalCompletedSessions = this.program.totalCompletedSessions + 1
-              openCycle.sessionTrackerCompleted?.push(workout)
-
-            }
-            else{
-              this.program.totalMissedSessions = this.program.totalMissedSessions + 1
-               openCycle.sessionTrackerMissed?.push(workout)
-            }
-            
-            await this.programService.updateFreeProgram(this.userId, this.program);
-            window.alert("success");
-
-          }
-      
-        }
-        else{
-          window.alert("program id is null");
         }
         
       }
-      
-    }
-    catch(e){
-      window.alert(e); 
+      catch(e){
+        window.alert(e); 
+      }
     }
  
   }

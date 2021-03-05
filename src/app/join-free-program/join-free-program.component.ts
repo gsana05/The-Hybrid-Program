@@ -52,7 +52,7 @@ export class JoinFreeProgramComponent implements OnInit {
         this.program.cycles.push(this.cycle);
 
         await this.programService.joinFreePrgram(this.userId, this.program);
-        window.alert("success");
+        //window.alert("success");
       }
       
     }

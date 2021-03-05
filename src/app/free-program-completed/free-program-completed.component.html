@@ -1,0 +1,17 @@
+<div class="grid-container">
+    <div class="header">
+        <button mat-icon-button [mat-dialog-close]="true" class="heading-close">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+    <div  class="grid-item">
+
+        <h1 style="font-weight: bold;">FREE TRAINING PROGRAM IS COMPLETE</h1>
+        <mat-card-title>Well done you have completed the 28 day free program! Go and check out your statistics!</mat-card-title>
+
+        <h2>Bring on the advanced program</h2>
+         
+        <button mat-flat-button class="workout-btn completed" (click)="updateWorkout(sessionNumber, sessionType, true)">Enroll</button>
+        
+    </div>
+</div>
