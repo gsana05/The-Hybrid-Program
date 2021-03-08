@@ -6,13 +6,21 @@
     </div>
     <div  class="grid-item">
 
-        <h1 style="font-weight: bold;">DAY {{sessionNumber}}</h1>
+        <h1 style="font-weight: bold;">DAY {{sessionNumber + 1}}</h1>
         <mat-card-title>{{workoutType}}</mat-card-title>
 
         <div class="exercise">
 
-            <div class="exercise-info">
-            <h2>{{exerciseOne}}</h2>
+            <div class="exercise-name">
+                <h2 class="exercise-name-label">{{exerciseOne}}</h2>
+            </div>
+
+            <div class="exercise-info" *ngIf="sessionType === 1">
+            <h2>Enter result</h2>
+            </div>
+
+            <div class="exercise-result" *ngIf="sessionType === 1">
+                <input class="glowing-border" type="number" #email required>
             </div>
 
             <div class="exercise-more-info">
@@ -23,36 +31,40 @@
 
         <div class="exercise">
 
-            <div class="exercise-info">
-            <h2>{{exerciseTwo}}</h2>
+            <div class="exercise-name">
+                <h2 class="exercise-name-label">{{exerciseTwo}}</h2>
+            </div>
+
+            <div class="exercise-info" *ngIf="sessionType === 1">
+            <h2>Enter result</h2>
+            </div>
+
+            <div class="exercise-result" *ngIf="sessionType === 1">
+                <input class="glowing-border" type="number" #email required>
             </div>
 
             <div class="exercise-more-info">
-            <button mat-flat-button color="primary" (click)="benchPressDemo()">{{demoExerciseTwo}}</button>
+            <button mat-flat-button color="primary" (click)="squatDemo()">{{demoExerciseTwo}}</button>
             </div>
 
         </div>
 
         <div class="exercise">
 
-            <div class="exercise-info">
-            <h2>{{exerciseThree}}</h2>
+            <div class="exercise-name">
+                <h2 class="exercise-name-label">{{exerciseThree}}</h2>
+            </div>
+
+            <div class="exercise-info" *ngIf="sessionType === 1">
+            <h2>Enter result</h2>
+            </div>
+
+            <div class="exercise-result" *ngIf="sessionType === 1">
+                <input class="glowing-border" type="number" #email required>
             </div>
 
             <div class="exercise-more-info">
-            <button mat-flat-button color="primary" (click)="openVideo()">{{demoExerciseThree}}</button>
-            </div>
-
-        </div>
-
-        <div class="exercise">
-
-            <div class="exercise-info">
-            <h2>{{exerciseFour}}</h2>
-            </div>
-
-            <div class="exercise-more-info">
-            <button mat-flat-button color="primary" (click)="openVideo()">{{demoExerciseFour}}</button>
+            <button mat-flat-button color="primary" (click)="squatDemo()">{{demoExerciseThree}}</button>
             </div>
 
         </div>

@@ -97,6 +97,7 @@ export class FreeProgramComponent implements OnInit {
   resistance = 4;
   runningAndResistance = 5; 
   rest = 6; 
+  walkingAndResistance = 7;
 
   //StripeCheckout: StripeCheckoutStatic | undefined;
 

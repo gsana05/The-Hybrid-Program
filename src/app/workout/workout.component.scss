@@ -1,3 +1,5 @@
+@import '~@angular/material/theming';
+@import '~../../theme.scss';
 
 .grid-container {
     display: flex;
@@ -30,12 +32,46 @@
         .exercise{
             margin-top: 20px;
             display: flex;
+
+            .exercise-name{
+                flex: 1;
+                align-items: center;
+                .exercise-name-label{
+                    text-decoration: underline;
+                }
+            }
+
             .exercise-info{
                 flex: 1;
-                text-align: left;
+                align-items: center;
             }
+
+
+            .exercise-result{
+                flex: 1;
+                align-items: center;
+
+                .glowing-border {
+                    border: 2px solid #dadada;
+                    border-radius: 7px;
+                    margin-bottom: 20px;
+                }
+                
+                .glowing-border:focus { 
+                    outline: none;
+                    border-color: #07bd3e;
+                    box-shadow: 0 0 10px #07bd3e;
+                }
+
+            }
+
             .exercise-more-info{
-                flex: 0;
+                flex: 1;
+                align-items: center;
+            }
+
+            @media (max-width: 768px) {  
+                flex-direction: column;
             }
         }
 
@@ -68,6 +104,8 @@ mat-card-header{
 ::ng-deep .mat-card{
     border: none;
 }
+
+
 
 
 
