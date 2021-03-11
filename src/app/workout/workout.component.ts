@@ -233,85 +233,103 @@ export class WorkoutComponent implements OnInit {
             }
           })   
 
+          const currentTotalMissedAndCompleted = openCycle.sessionTrackerCompleted.length + openCycle.sessionTrackerMissed.length
+         
+          const numberSession = sessionNumber + 1
+          const value = numberSession - currentTotalMissedAndCompleted
+          
+          window.alert("value: " + value + " numberSession: " + numberSession + " currentTotalMissedAndCompleted: " + currentTotalMissedAndCompleted);
+          console.log("value: " + value);
 
-          var currentOpenCompleted = null;
-          openCycle.sessionTrackerCompleted.forEach(dataCompleted => {
-            if(dataCompleted.sessionNumber == sessionNumber){
-              currentOpenCompleted = true; 
+
+
+          if(value == 1){
+
+            var currentOpenCompleted = null;
+            openCycle.sessionTrackerCompleted.forEach(dataCompleted => {
+              if(dataCompleted.sessionNumber == sessionNumber){
+                currentOpenCompleted = true; 
+              }
+            })
+
+            var currentOpenMissed = null;
+            openCycle.sessionTrackerMissed.forEach(dataMissed => {
+              if(dataMissed.sessionNumber == sessionNumber){
+                currentOpenMissed = true; 
+              }
+            })
+
+            if(currentOpenCompleted == true){
+              window.alert("You have already completed this sesssion");
             }
-          })
-
-          var currentOpenMissed = null;
-          openCycle.sessionTrackerMissed.forEach(dataMissed => {
-            if(dataMissed.sessionNumber == sessionNumber){
-              currentOpenMissed = true; 
+            else if(currentOpenMissed == true){
+              window.alert("You have set this session to missed");
             }
-          })
+            else {
 
-          if(currentOpenCompleted == true){
-            window.alert("You have already completed this sesssion");
-          }
-          else if(currentOpenMissed == true){
-            window.alert("You have set this session to missed");
-          }
-          else {
+              const workout : Workout = {
+                date : new Date(),
+                sessionNumber : sessionNumber,
+                sessionType : sessionType
+              } 
+              
+              if(workoutStatus == true){
+                this.program.totalCompletedSessions = this.program.totalCompletedSessions + 1
+                openCycle.sessionTrackerCompleted?.push(workout)
 
-            const workout : Workout = {
-              date : new Date(),
-              sessionNumber : sessionNumber,
-              sessionType : sessionType
-            } 
-            
-            if(workoutStatus == true){
-              this.program.totalCompletedSessions = this.program.totalCompletedSessions + 1
-              openCycle.sessionTrackerCompleted?.push(workout)
+              }
+              else{
+                this.program.totalMissedSessions = this.program.totalMissedSessions + 1
+                openCycle.sessionTrackerMissed?.push(workout)
+              }
+              
+              await this.programService.updateFreeProgram(this.userId, this.program);
+              if(sessionNumber == 0 || sessionNumber == 27){
+                window.alert("session number: " + sessionNumber);
+                if(sessionNumber == 0){
+                  window.alert("we are in");
+                  const testResults : TestResults = {
+                    preTestDate : new Date(),
+                    postTestDate : null,
+                    preTestFiveKmRun : this.fivekmRun,
+                    postTestFiveKmRun : null,
+                    preTestPlank : this.plank,
+                    postTestPlank : null,
+                    preTestPressUps : this.pressUps,
+                    postTestPressUps : null
+                  }
 
-            }
-            else{
-              this.program.totalMissedSessions = this.program.totalMissedSessions + 1
-               openCycle.sessionTrackerMissed?.push(workout)
-            }
-            
-            await this.programService.updateFreeProgram(this.userId, this.program);
-            if(sessionNumber == 0 || sessionNumber == 27){
-              window.alert("session number: " + sessionNumber);
-              if(sessionNumber == 0){
-                window.alert("we are in");
-                const testResults : TestResults = {
-                  preTestDate : new Date(),
-                  postTestDate : null,
-                  preTestFiveKmRun : this.fivekmRun,
-                  postTestFiveKmRun : null,
-                  preTestPlank : this.plank,
-                  postTestPlank : null,
-                  preTestPressUps : this.pressUps,
-                  postTestPressUps : null
+                  window.alert("before");
+                  await this.programService.setFreeProgramTestResults(this.userId, this.program, testResults)
+                  window.alert("success");
                 }
 
-                window.alert("before");
-                await this.programService.setFreeProgramTestResults(this.userId, this.program, testResults)
-                window.alert("success");
+                if(sessionNumber == 27){
+
+                  this.testResults.postTestDate = new Date();
+                  this.testResults.postTestFiveKmRun = this.fivekmRun;
+                  this.testResults.postTestPlank = this.plank;
+                  this.testResults.postTestPressUps = this.pressUps;
+
+                  await this.programService.updateFreeProgramTestResults(this.userId, this.program, this.testResults);
+                  window.alert("success");
+
+                }
+
+                //window.alert("fivekmRun: " + this.fivekmRun + "plank: " + this.plank + "press ups: " + this.pressUps);
+
               }
-
-              if(sessionNumber == 27){
-
-                this.testResults.postTestDate = new Date();
-                this.testResults.postTestFiveKmRun = this.fivekmRun;
-                this.testResults.postTestPlank = this.plank;
-                this.testResults.postTestPressUps = this.pressUps;
-
-                await this.programService.updateFreeProgramTestResults(this.userId, this.program, this.testResults);
-                window.alert("success");
-
-              }
-
-              //window.alert("fivekmRun: " + this.fivekmRun + "plank: " + this.plank + "press ups: " + this.pressUps);
+              this.dialog.closeAll()
+              //window.alert("success");
 
             }
-            this.dialog.closeAll()
-            //window.alert("success");
-
           }
+          else{
+            window.alert("you need to complete or miss a session in sequencial order");
+          }
+          
+
+          
       
         }
         else{
