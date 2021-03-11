@@ -28,8 +28,27 @@ export interface Workout {
     sessionType : Number;
 }
 
+export interface TestResults {
+    resultsId? : string | null;
+    preTestDate? : Date | null; 
+    postTestDate?: Date | null;
+    preTestFiveKmRun? : number | null;
+    postTestFiveKmRun? : number | null;
+    preTestPlank? : number | null;
+    postTestPlank? : number | null;
+    preTestPressUps? : number | null;
+    postTestPressUps? : number | null;
+}
+
 export interface Message {
     messageId?: string;
     text: string;
     sent?: number;             //summary of polling information     
+}
+
+export interface Joking {
+    messageId?: string | null;
+    text?: string;
+    senderType?: Date;
+    sent?: number;                      //date/time of send (ms)      //if it's a forward, the ID of the original message
 }

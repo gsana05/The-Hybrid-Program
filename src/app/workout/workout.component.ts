@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { VideoComponent } from '../video/video.component';
 import { MatDialog } from '@angular/material/dialog';
-import { User, FreeProgram, Message, Cycles, Workout } from '../types';
+import { User, FreeProgram, Message, Cycles, Workout, TestResults } from '../types';
 import { AuthService } from '../auth.service';
 import { ProgramsService } from '../programs.service';
 import { AngularFireAuth } from '@angular/fire/auth';
@@ -27,6 +27,18 @@ export class WorkoutComponent implements OnInit {
     totalMissedSessions : 0
   }
 
+  testResults : TestResults = {
+    resultsId : "",
+    preTestDate : new Date(),
+    postTestDate : new Date(),
+    preTestFiveKmRun : 0,
+    postTestFiveKmRun : 0,
+    preTestPlank : 0,
+    postTestPlank : 0,
+    preTestPressUps : 0,
+    postTestPressUps : 0
+}
+
   url: string | undefined;
   userId: string | null = null;
   snapshotChanges : Subscription | undefined; 
@@ -47,6 +59,10 @@ export class WorkoutComponent implements OnInit {
   demoExerciseFour = "";
 
   example = "Demonstration";
+
+  fivekmRun = 0.0;
+  plank = 0.0;
+  pressUps = 0.0;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialog: MatDialog,  private programService : ProgramsService, private afAuth: AngularFireAuth) {
 
@@ -171,8 +187,27 @@ export class WorkoutComponent implements OnInit {
     this.snapshotChanges = this.programService.testingPrograms()?.subscribe(programs => {
       programs.map(data => {
         this.program = data
+        this.programService.addTestResultsListenerSnapshotValues(data)
+
+        console.log("wassssupppp");
+
+        this.programService.getTestResults()?.subscribe(testResults => {
+          testResults.map(data => {
+            this.testResults = data;
+
+            console.log("postTestDate: " + this.testResults.postTestDate + " id: " + this.testResults.resultsId);
+
+          })
+        })
+
+
       })
     });
+
+
+    
+
+
    }
 
   ngOnInit(): void {
@@ -238,6 +273,41 @@ export class WorkoutComponent implements OnInit {
             }
             
             await this.programService.updateFreeProgram(this.userId, this.program);
+            if(sessionNumber == 0 || sessionNumber == 27){
+              window.alert("session number: " + sessionNumber);
+              if(sessionNumber == 0){
+                window.alert("we are in");
+                const testResults : TestResults = {
+                  preTestDate : new Date(),
+                  postTestDate : null,
+                  preTestFiveKmRun : this.fivekmRun,
+                  postTestFiveKmRun : null,
+                  preTestPlank : this.plank,
+                  postTestPlank : null,
+                  preTestPressUps : this.pressUps,
+                  postTestPressUps : null
+                }
+
+                window.alert("before");
+                await this.programService.setFreeProgramTestResults(this.userId, this.program, testResults)
+                window.alert("success");
+              }
+
+              if(sessionNumber == 27){
+
+                this.testResults.postTestDate = new Date();
+                this.testResults.postTestFiveKmRun = this.fivekmRun;
+                this.testResults.postTestPlank = this.plank;
+                this.testResults.postTestPressUps = this.pressUps;
+
+                await this.programService.updateFreeProgramTestResults(this.userId, this.program, this.testResults);
+                window.alert("success");
+
+              }
+
+              //window.alert("fivekmRun: " + this.fivekmRun + "plank: " + this.plank + "press ups: " + this.pressUps);
+
+            }
             this.dialog.closeAll()
             //window.alert("success");
 

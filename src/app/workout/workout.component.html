@@ -20,7 +20,7 @@
             </div>
 
             <div class="exercise-result" *ngIf="sessionType === 1">
-                <input class="glowing-border" type="number" #email required>
+                <input class="glowing-border" type="number" [(ngModel)]="fivekmRun" required>
             </div>
 
             <div class="exercise-more-info">
@@ -40,7 +40,7 @@
             </div>
 
             <div class="exercise-result" *ngIf="sessionType === 1">
-                <input class="glowing-border" type="number" #email required>
+                <input class="glowing-border" type="number" [(ngModel)]="plank" required>
             </div>
 
             <div class="exercise-more-info">
@@ -60,7 +60,7 @@
             </div>
 
             <div class="exercise-result" *ngIf="sessionType === 1">
-                <input class="glowing-border" type="number" #email required>
+                <input class="glowing-border" type="number" [(ngModel)]="pressUps" required>
             </div>
 
             <div class="exercise-more-info">
