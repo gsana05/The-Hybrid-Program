@@ -17,6 +17,7 @@ import { StatisticsComponent } from './statistics/statistics.component';
 import { SettingsComponent } from './settings/settings.component';
 import { JoinFreeProgramComponent } from './join-free-program/join-free-program.component';
 import { WorkoutComponent } from './workout/workout.component';
+import {  SessionOrderPopUpComponent } from './session-order-pop-up/session-order-pop-up.component'
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['welcome']);
 
@@ -46,7 +47,8 @@ const routes: Routes = [
       { path: 'statistics', component: StatisticsComponent}, 
       {path: 'join-free-program', component: JoinFreeProgramComponent,
         children:[
-          { path: 'workout', component: WorkoutComponent}
+          { path: 'workout', component: WorkoutComponent},
+          { path: 'session-order', component: SessionOrderPopUpComponent}
         ]
       }
     ]

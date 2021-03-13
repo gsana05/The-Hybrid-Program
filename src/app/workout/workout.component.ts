@@ -7,6 +7,7 @@ import { AuthService } from '../auth.service';
 import { ProgramsService } from '../programs.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { SessionOrderPopUpComponent } from '../session-order-pop-up/session-order-pop-up.component';
 
 @Component({
   selector: 'app-workout',
@@ -238,8 +239,8 @@ export class WorkoutComponent implements OnInit {
           const numberSession = sessionNumber + 1
           const value = numberSession - currentTotalMissedAndCompleted
           
-          window.alert("value: " + value + " numberSession: " + numberSession + " currentTotalMissedAndCompleted: " + currentTotalMissedAndCompleted);
-          console.log("value: " + value);
+          //window.alert("value: " + value + " numberSession: " + numberSession + " currentTotalMissedAndCompleted: " + currentTotalMissedAndCompleted);
+          //console.log("value: " + value);
 
 
 
@@ -325,7 +326,8 @@ export class WorkoutComponent implements OnInit {
             }
           }
           else{
-            window.alert("you need to complete or miss a session in sequencial order");
+            this.dialog.open(SessionOrderPopUpComponent, {width: '50%', height: '50%'})
+            //window.alert("you need to complete or miss a session in sequencial order");
           }
           
 

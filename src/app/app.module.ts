@@ -47,6 +47,7 @@ import { JoinFreeProgramComponent } from './join-free-program/join-free-program.
 import { VideoComponent } from './video/video.component';
 import { WorkoutComponent } from './workout/workout.component';
 import { FreeProgramCompletedComponent } from './free-program-completed/free-program-completed.component';
+import { SessionOrderPopUpComponent } from './session-order-pop-up/session-order-pop-up.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,8 @@ import { FreeProgramCompletedComponent } from './free-program-completed/free-pro
     JoinFreeProgramComponent,
     VideoComponent,
     WorkoutComponent,
-    FreeProgramCompletedComponent
+    FreeProgramCompletedComponent,
+    SessionOrderPopUpComponent
   ],
   imports: [
     BrowserModule,
