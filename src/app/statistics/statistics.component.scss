@@ -1,0 +1,42 @@
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) { 
+    .flex-container {
+        //background-color: purple;
+        display: block;
+      }
+ }
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) { 
+    .flex-container {
+        //background-color: red;
+        display: block;
+      }
+ }
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) { 
+    .flex-container {
+        //background-color: pink;
+        display: block;
+      }
+ }
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) { 
+    .flex-container {
+        //background-color: yellow;
+        display: flex;
+      }
+ }
+
+  .flex-container {
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .flex-container > div {
+    background-color: #f1f1f1;
+    margin: 10px;
+    padding: 20px;
+  }
