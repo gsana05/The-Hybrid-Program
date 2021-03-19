@@ -30,8 +30,8 @@ export interface Workout {
 
 export interface TestResults {
     resultsId? : string | null;
-    preTestDate? : Date | null; 
-    postTestDate?: Date | null;
+    preTestDate? : number | null; 
+    postTestDate?: number | null;
     preTestFiveKmRun? : number | null;
     postTestFiveKmRun? : number | null;
     preTestPlank? : number | null;

@@ -1,12 +1,47 @@
-<p>statistics works!</p>
-<div class="flex-container">
-    <div>
-        <canvas id="barChart"></canvas>
+<div class="main-container">
+
+    <div class="top">
+
+        <div class="graph-one">
+            <h2>Session completed, missed or open</h2>
+            <canvas id="lineChart"></canvas>
+        </div>
+
+        <div class="graph-two">
+            <h2>Pre and post 28 day program results</h2>
+
+            <div class="results">
+                <h2 class="pre-result" >Start date: {{startDateOfProgram | date}}</h2>
+                <mat-icon class="arrow-icon"></mat-icon>
+                <h2 class="post-result">End date: {{endDateOfProgram}}</h2>
+            </div>
+
+            <div class="results">
+                <h2 class="pre-result" >Pre 5k time: {{preFiveKTime}}</h2>
+                <mat-icon class="arrow-icon">arrow_right_alt</mat-icon>
+                <h2 class="post-result">Pre 5k time: {{preFiveKTime}}</h2>
+            </div>
+            
+        </div>
+
     </div>
-    <div>
-        <canvas id="lineChart"></canvas>
+
+    <div class="bottom">
+
+        <div class="graph-three">
+            <!--
+               <canvas id="horizontalBar"></canvas> 
+            -->
+            
+        </div>
+
+        <div class="graph-four">
+            <!--
+                <canvas id="horizontalBarPlay"></canvas>
+            -->
+            
+        </div>
+
     </div>
-    <div>
-        <canvas id="horizontalBar"></canvas>
-    </div>  
-  </div>
+
+</div>

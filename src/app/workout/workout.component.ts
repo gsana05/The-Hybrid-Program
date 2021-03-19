@@ -30,8 +30,8 @@ export class WorkoutComponent implements OnInit {
 
   testResults : TestResults = {
     resultsId : "",
-    preTestDate : new Date(),
-    postTestDate : new Date(),
+    preTestDate : new Date().getTime(),
+    postTestDate : new Date().getTime(),
     preTestFiveKmRun : 0,
     postTestFiveKmRun : 0,
     preTestPlank : 0,
@@ -190,8 +190,6 @@ export class WorkoutComponent implements OnInit {
         this.program = data
         this.programService.addTestResultsListenerSnapshotValues(data)
 
-        console.log("wassssupppp");
-
         this.programService.getTestResults()?.subscribe(testResults => {
           testResults.map(data => {
             this.testResults = data;
@@ -290,7 +288,7 @@ export class WorkoutComponent implements OnInit {
                 if(sessionNumber == 0){
                   window.alert("we are in");
                   const testResults : TestResults = {
-                    preTestDate : new Date(),
+                    preTestDate : new Date().getTime(),
                     postTestDate : null,
                     preTestFiveKmRun : this.fivekmRun,
                     postTestFiveKmRun : null,
@@ -307,7 +305,7 @@ export class WorkoutComponent implements OnInit {
 
                 if(sessionNumber == 27){
 
-                  this.testResults.postTestDate = new Date();
+                  this.testResults.postTestDate = new Date().getTime();
                   this.testResults.postTestFiveKmRun = this.fivekmRun;
                   this.testResults.postTestPlank = this.plank;
                   this.testResults.postTestPressUps = this.pressUps;

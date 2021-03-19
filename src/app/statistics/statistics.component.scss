@@ -1,42 +1,64 @@
-// Small devices (landscape phones, 576px and up)
-@media (min-width: 576px) { 
-    .flex-container {
-        //background-color: purple;
-        display: block;
-      }
- }
+.main-container{
+    display: flex;
+    flex-direction: column;
 
-// Medium devices (tablets, 768px and up)
-@media (min-width: 768px) { 
-    .flex-container {
-        //background-color: red;
-        display: block;
-      }
- }
+    h2{
+        color: white;
+    }
+    
 
-// Large devices (desktops, 992px and up)
-@media (min-width: 992px) { 
-    .flex-container {
-        //background-color: pink;
-        display: block;
-      }
- }
-
-// Extra large devices (large desktops, 1200px and up)
-@media (min-width: 1200px) { 
-    .flex-container {
-        //background-color: yellow;
+    .top{
+        flex: 1;
         display: flex;
-      }
- }
 
-  .flex-container {
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .flex-container > div {
-    background-color: #f1f1f1;
-    margin: 10px;
-    padding: 20px;
-  }
+        .graph-one{
+            flex: 1;
+            text-align: center;
+        }
+
+        .graph-two{
+            flex: 1;
+            text-align: center;
+            .results{
+                display: flex;
+                justify-content: center;
+                .pre-result{
+                    
+                }
+
+                .arrow-icon{
+                    color: rgb(44, 209, 44);
+                    font-weight: bold;
+                    margin-top: 5px;
+                    margin-right: 10px;
+                    margin-left: 10px;
+                    justify-content: center;
+                    size: 80px;
+                }
+    
+                .post-result{
+    
+                }
+
+            }
+           
+        }
+
+    }
+
+
+    .bottom{
+        flex: 1;
+        display: flex;
+
+        .graph-three{
+            flex: 1;
+        }
+
+        .graph-four{
+            flex: 1;
+        }
+
+    }
+
+}
