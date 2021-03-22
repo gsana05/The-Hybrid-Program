@@ -66,30 +66,76 @@ export class StatisticsComponent implements OnInit {
 snapshotChanges : Subscription | undefined; 
 numberOfWorkoutsPerCycle = 28;
 startDateOfProgram : number | undefined | null 
-endDateOfProgram : Date | null | undefined
+endDateOfProgram : number | null | undefined
 preFiveKTime : string | undefined
 postFiveKtime : string | undefined
 prePressUpCount : string | undefined
 postPressUpCount : string | undefined
 prePlankTime : string | undefined
-postPlanktime : string | undefined
+postPlankTime : string | undefined
 
 now = new Date();
 
-  constructor(private programService : ProgramsService, @Inject(LOCALE_ID) private locale: string) { }
+workoutTest = 1;
+workoutTestCount = 0;
 
-  transform(timestamp: Timestamp, format?: string): string {
-    if (!timestamp?.toDate) {
-        return "";
-    }
-    return formatDate(timestamp.toDate(), format || 'medium', this.locale);
-}
+stretchAndCore = 2;
+stretchAndCoreCount = 0;
+
+running = 3;
+runningCount = 0;
+
+resistance = 4;
+resistanceCount = 0;
+
+runningAndResistance = 5; 
+runningAndResistanceCount = 0;
+
+rest = 6;
+restCount = 0; 
+
+walkingAndResistance = 7;
+walkingAndResistanceCount = 0;
+
+
+
+  constructor(private programService : ProgramsService, @Inject(LOCALE_ID) private locale: string) { }
 
   ngOnInit(): void {
 
     this.snapshotChanges = this.programService.testingPrograms()?.subscribe(programs => {
       programs.map(data => {
         this.program = data;
+
+        data.cycles.forEach(data => {
+          data.sessionTrackerCompleted.forEach(completed => {
+            
+            switch(completed.sessionType){
+              case this.workoutTest: 
+              this.workoutTestCount = this.workoutTestCount + 1;
+              break;
+              case this.stretchAndCore: 
+              this.stretchAndCoreCount++;
+              break;
+              case this.running: 
+              this.runningCount++;
+              break;
+              case this.resistance:
+                this.resistanceCount++; 
+              break;
+              case this.runningAndResistance:
+                this.runningAndResistanceCount++; 
+              break;
+              case this.rest: 
+              this.restCount++;
+              break;
+              case this.walkingAndResistance: 
+              this.walkingAndResistanceCount++;
+              break;
+            }
+
+          })
+        })
 
         //get results 
         this.programService.addTestResultsListenerSnapshotValues(data)
@@ -99,16 +145,13 @@ now = new Date();
             this.testResults = data;
 
             this.startDateOfProgram = data.preTestDate 
-            //this.endDateOfProgram = data.postTestDate 
+            this.endDateOfProgram = data.postTestDate
             this.preFiveKTime = data.preTestFiveKmRun?.toString() 
             this.postFiveKtime = data.postTestFiveKmRun?.toString()
             this.prePressUpCount = data.preTestPressUps?.toString()
             this.postPressUpCount = data.postTestPressUps?.toString()
             this.prePlankTime = data.preTestPlank?.toString()
-            this.postPlanktime = data.postTestPlank?.toString()
-
-
-
+            this.postPlankTime = data.postTestPlank?.toString()
 
             console.log("postTestDate: " + this.testResults.postTestDate + " id: " + this.testResults.resultsId);
 
@@ -120,12 +163,12 @@ now = new Date();
         //const totalSessionsStatusSet = completedSessions + missedSessions
         const openSessions = this.numberOfWorkoutsPerCycle - (completedSessions + missedSessions)
 
-        var myChart = new Chart("lineChart", {
-          type: 'pie',
+        var myChart = new Chart("horizontalBar", {
+          type: 'horizontalBar',
           data: {
             labels: ['Completed', 'Missed', 'Open'],
             datasets: [{
-              label: 'session stats',
+              label: '',
               data: [completedSessions, missedSessions, openSessions],
               backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
@@ -141,127 +184,82 @@ now = new Date();
             }]
           },
           options: {
-              responsive: true
+              responsive: true,
+              scales: {
+                xAxes: [{
+                  display: true,
+                  scaleLabel: {
+                    display: true,
+                    labelString: 'Number of sessions'
+                  },
+                  ticks: {
+                    // forces step size to be 5 units
+                    min: 0,
+                    max: 28,
+                    stepSize: 1 // <----- This prop sets the stepSize
+                  }
+                }],
+                yAxes: [{
+                  display: true,
+                  scaleLabel: {
+                    display: true,
+                    labelString: 'Status'
+                  }
+                }]
+              },
+              legend: {
+                display: false // hide label
+              }
           }
         });
+
+        var myChart = new Chart("barChart", {
+          type: 'bar',
+          data: {
+            labels: ['Test', 'Stretch', 'Running', 'Resistance', 'Hybrid', 'Rest', 'Walking'],
+            datasets: [{
+              label: '',
+              data: [this.workoutTestCount, this.stretchAndCoreCount, this.runningCount, this.resistanceCount, this.runningAndResistanceCount, this.restCount, this.walkingAndResistanceCount],
+              backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgb(60, 179, 113, 0.2)'
+              ],
+              borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
+                'rgb(0,128,0, 1)'
+              ],
+              borderWidth: 1
+            }]
+          },
+          options: {
+            scales: {
+              yAxes: [{
+                ticks: {
+                  beginAtZero: true,
+                  precision: 0 // whole numbers on yAxis
+                }
+              }]
+            },
+              legend: {
+                display: false // hide label
+              }
+          }
+        });
+
 
       })
     });
 
-
-    var myChart = new Chart("barChart", {
-      type: 'bar',
-      data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [{
-          label: '# of Votes',
-          data: [12, 19, 3, 5, 2, 3],
-          backgroundColor: [
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(255, 206, 86, 0.2)',
-            'rgba(75, 192, 192, 0.2)',
-            'rgba(153, 102, 255, 0.2)',
-            'rgba(255, 159, 64, 0.2)'
-          ],
-          borderColor: [
-            'rgba(255, 99, 132, 1)',
-            'rgba(54, 162, 235, 1)',
-            'rgba(255, 206, 86, 1)',
-            'rgba(75, 192, 192, 1)',
-            'rgba(153, 102, 255, 1)',
-            'rgba(255, 159, 64, 1)'
-          ],
-          borderWidth: 1
-        }]
-      },
-      options: {
-        scales: {
-          yAxes: [{
-            ticks: {
-              beginAtZero: true
-            }
-          }]
-        }
-      }
-    });
-
-    var myChart = new Chart("horizontalBar", {
-      type: 'horizontalBar',
-      data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [{
-          label: '# of Votes',
-          data: [12, 19, 3, 5, 2, 3],
-          backgroundColor: [
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(255, 206, 86, 0.2)',
-            'rgba(75, 192, 192, 0.2)',
-            'rgba(153, 102, 255, 0.2)',
-            'rgba(255, 159, 64, 0.2)'
-          ],
-          borderColor: [
-            'rgba(255, 99, 132, 1)',
-            'rgba(54, 162, 235, 1)',
-            'rgba(255, 206, 86, 1)',
-            'rgba(75, 192, 192, 1)',
-            'rgba(153, 102, 255, 1)',
-            'rgba(255, 159, 64, 1)'
-          ],
-          borderWidth: 1
-        }]
-      },
-      options: {
-        scales: {
-          yAxes: [{
-            ticks: {
-              beginAtZero: true
-            }
-          }]
-        }
-      }
-    });
-
-    var myChart = new Chart("horizontalBarPlay", {
-      type: 'horizontalBar',
-      data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [{
-          label: '# of Votes',
-          data: [12, 19, 3, 5, 2, 3],
-          backgroundColor: [
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(255, 206, 86, 0.2)',
-            'rgba(75, 192, 192, 0.2)',
-            'rgba(153, 102, 255, 0.2)',
-            'rgba(255, 159, 64, 0.2)'
-          ],
-          borderColor: [
-            'rgba(255, 99, 132, 1)',
-            'rgba(54, 162, 235, 1)',
-            'rgba(255, 206, 86, 1)',
-            'rgba(75, 192, 192, 1)',
-            'rgba(153, 102, 255, 1)',
-            'rgba(255, 159, 64, 1)'
-          ],
-          borderWidth: 1
-        }]
-      },
-      options: {
-        scales: {
-          yAxes: [{
-            ticks: {
-              beginAtZero: true
-            }
-          }]
-        }
-      }
-    });
-
   }
-
-  
 
 }

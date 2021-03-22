@@ -3,25 +3,13 @@
     <div class="top">
 
         <div class="graph-one">
-            <h2>Session completed, missed or open</h2>
-            <canvas id="lineChart"></canvas>
+             <h1>Sessions completed, missed or open</h1> 
+             <canvas id="horizontalBar"></canvas> 
         </div>
 
         <div class="graph-two">
-            <h2>Pre and post 28 day program results</h2>
-
-            <div class="results">
-                <h2 class="pre-result" >Start date: {{startDateOfProgram | date}}</h2>
-                <mat-icon class="arrow-icon"></mat-icon>
-                <h2 class="post-result">End date: {{endDateOfProgram}}</h2>
-            </div>
-
-            <div class="results">
-                <h2 class="pre-result" >Pre 5k time: {{preFiveKTime}}</h2>
-                <mat-icon class="arrow-icon">arrow_right_alt</mat-icon>
-                <h2 class="post-result">Pre 5k time: {{preFiveKTime}}</h2>
-            </div>
-            
+             <h1>Types of sessions</h1>
+             <canvas id="barChart"></canvas> 
         </div>
 
     </div>
@@ -29,17 +17,38 @@
     <div class="bottom">
 
         <div class="graph-three">
-            <!--
-               <canvas id="horizontalBar"></canvas> 
-            -->
+            
+             <h1>Pre and post 28 day program results</h1>
+
+            <div class="results">
+                <h2 class="pre-result" *ngIf="startDateOfProgram != null">Start date: {{startDateOfProgram | date}}</h2>
+                <mat-icon class="arrow-icon"></mat-icon>
+                <h2 class="post-result"  *ngIf="endDateOfProgram != null">End date: {{endDateOfProgram | date}}</h2>
+            </div>
+
+            <div class="results">
+                <h2 class="pre-result" *ngIf="preFiveKTime != null">Pre 5k time: {{preFiveKTime}}</h2>
+                <mat-icon class="arrow-icon" *ngIf="postFiveKtime != null">arrow_right_alt</mat-icon>
+                <h2 class="post-result" *ngIf="postFiveKtime != null">Pre 5k time: {{postFiveKtime}}</h2>
+            </div>
+
+            <div class="results">
+                <h2 class="pre-result" *ngIf="prePressUpCount != null">Pre press up count: {{prePressUpCount}}</h2>
+                <mat-icon class="arrow-icon" *ngIf="postPressUpCount != null">arrow_right_alt</mat-icon>
+                <h2 class="post-result" *ngIf="postPressUpCount != null">Post press up count: {{postPressUpCount}}</h2>
+            </div>
+
+            <div class="results">
+                <h2 class="pre-result" *ngIf="prePlankTime != null">Pre plank time: {{prePlankTime}}</h2>
+                <mat-icon class="arrow-icon" *ngIf="postPlankTime != null">arrow_right_alt</mat-icon>
+                <h2 class="post-result" *ngIf="postPlankTime != null">Post plank time: {{postPlankTime}}</h2>
+            </div> 
+            
             
         </div>
 
         <div class="graph-four">
-            <!--
-                <canvas id="horizontalBarPlay"></canvas>
-            -->
-            
+
         </div>
 
     </div>
