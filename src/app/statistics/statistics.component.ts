@@ -189,7 +189,7 @@ walkingAndResistanceCount = 0;
                 xAxes: [{
                   display: true,
                   scaleLabel: {
-                    display: true,
+                    display: false,
                     labelString: 'Number of sessions'
                   },
                   ticks: {
@@ -202,7 +202,7 @@ walkingAndResistanceCount = 0;
                 yAxes: [{
                   display: true,
                   scaleLabel: {
-                    display: true,
+                    display: false,
                     labelString: 'Status'
                   }
                 }]
@@ -242,6 +242,7 @@ walkingAndResistanceCount = 0;
             }]
           },
           options: {
+            responsive: true,
             scales: {
               yAxes: [{
                 ticks: {

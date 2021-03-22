@@ -16,11 +16,15 @@
         flex: 1;
         display: flex;
 
+        .barChartSize{
+            position: relative;
+            max-height: 100vh;
+            max-width: 65vh;
+            margin: 0 auto;
+        }
+
         .graph-one{
             flex: 1;
-            margin-top: 10px;
-            margin-right: 100px;
-            margin-left: 30px;
             text-align: center;
         }
 
@@ -30,11 +34,36 @@
             margin-right: 30px;
             text-align: center;
         }
+
+        @media (max-width: 1024px) { 
+            flex-direction: column;
+
+            .graph-one{
+                flex: 1;
+                margin-top: 10px;
+                margin-right: 10px;
+                margin-left: 10px;
+            }
+    
+            .graph-two{
+                flex: 1;
+                margin-top: 10px;
+                margin-right: 10px;
+                margin-left: 10px;
+            }
+
+            .barChartSize{
+                position: relative;
+                max-height: 100vh;
+                max-width: 100vh;
+            }
+        }
     }
 
     .bottom{
         flex: 1;
         display: flex;
+        margin-top: 10px;
 
         .graph-three{
             flex: 1;
@@ -43,9 +72,8 @@
             .results{
                 display: flex;
                 justify-content: center;
-                .pre-result{
-                    
-                }
+                margin-left: 10px;
+                margin-right: 10px;
 
                 .arrow-icon{
                     color: rgb(44, 209, 44);
@@ -68,7 +96,6 @@
         .graph-four{
             flex: 0;
         }
-
 
     }
 
