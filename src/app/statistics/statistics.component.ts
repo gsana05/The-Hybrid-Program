@@ -97,7 +97,7 @@ restCount = 0;
 walkingAndResistance = 7;
 walkingAndResistanceCount = 0;
 
-
+hasGraphData = false; 
 
   constructor(private programService : ProgramsService, @Inject(LOCALE_ID) private locale: string) { }
 
@@ -106,6 +106,16 @@ walkingAndResistanceCount = 0;
     this.snapshotChanges = this.programService.testingPrograms()?.subscribe(programs => {
       programs.map(data => {
         this.program = data;
+        //window.alert("totalCompletedCycles: " + data.totalCompletedSessions + "totalMissedSessions" + data.totalMissedSessions);
+        const sessionMissedAndCompleted = data.totalCompletedSessions + data.totalMissedSessions
+
+        // if the user has missed or completed a session then display data
+        if(sessionMissedAndCompleted > 0){
+          this.hasGraphData = true;
+        }
+        else{
+          this.hasGraphData = false;
+        }
 
         data.cycles.forEach(data => {
           data.sessionTrackerCompleted.forEach(completed => {

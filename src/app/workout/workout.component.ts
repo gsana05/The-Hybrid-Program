@@ -65,6 +65,19 @@ export class WorkoutComponent implements OnInit {
   plank = 0.0;
   pressUps = 0.0;
 
+  exerciseType5k = "5k run";
+  exercisePlank = "Plank";
+  exercisePressUps = "Press ups";
+  exerciseSquats = "Squats";
+  exercise2kEasy = "Easy 2km Run @50/60% effort";
+  exercise3kEasy = "Easy 3km Run @50/60% effort";
+  exercise4kEasy = "Easy 4km Run @50/60% effort";
+  exerciseResistance = "30 minute resistance circuit - Follow video";
+  exerciseWalk = "40/60 minute walk";
+  exerciseIntervals400m = "8 X 400m interval runs @ 70/80% effort";
+  exerciseIntervals200m = "8 X 200m interval runs @ 80/85% effort";
+  exercise5kTempo = "Tempo 5km Run @60/70% effort"; 
+
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialog: MatDialog,  private programService : ProgramsService, private afAuth: AngularFireAuth) {
 
 
@@ -76,10 +89,10 @@ export class WorkoutComponent implements OnInit {
       case 1: 
       this.workoutType = "TESTING"
       if(this.sessionNumber == 0 || this.sessionNumber == 27){
-        this.exerciseOne = "5k run";
-        this.exerciseTwo = "Plank";
-        this.exerciseThree = "Press ups";
-        this.exerciseFour = "Squats";
+        this.exerciseOne = this.exerciseType5k;
+        this.exerciseTwo = this.exercisePlank;
+        this.exerciseThree = this.exercisePressUps;
+        this.exerciseFour = this.exerciseSquats;
 
         this.demoExerciseOne = this.example;
         this.demoExerciseTwo = this.example;
@@ -91,7 +104,7 @@ export class WorkoutComponent implements OnInit {
 
       case 2: 
       this.workoutType = "STRETCH AND CORE";
-      if(this.sessionNumber == 1 || this.sessionNumber == 10 || this.sessionNumber == 13 || this.sessionNumber == 19 || this.sessionNumber == 25 || this.sessionNumber == 26){
+      if(this.sessionNumber == 10 || this.sessionNumber == 13 || this.sessionNumber == 19 || this.sessionNumber == 25 || this.sessionNumber == 26){
         this.exerciseOne = "Dynamic stretching & core - Follow video";
         this.demoExerciseOne = this.example;
       }
@@ -100,20 +113,20 @@ export class WorkoutComponent implements OnInit {
 
       case 3: this.workoutType = "RUNNING"
       if(this.sessionNumber == 2){
-        this.exerciseOne = "Easy 3km Run @50/60% effort";
+        this.exerciseOne = this.exercise3kEasy;
         this.demoExerciseOne = this.example;
       }
 
       if(this.sessionNumber == 9){
-        this.exerciseOne = "Easy 4km Run @50/60% effort";
+        this.exerciseOne = this.exercise4kEasy;
         this.demoExerciseOne = this.example;
       }
 
       if(this.sessionNumber == 12){
-        this.exerciseOne = "Easy 2km Run @50/60% effort";
+        this.exerciseOne = this.exercise2kEasy;
         this.demoExerciseOne = this.example;
 
-        this.exerciseTwo = "8 X 400m interval runs @ 70/80% effort";
+        this.exerciseTwo = this.exerciseIntervals400m;
         this.demoExerciseTwo = this.example;
       }
 
@@ -121,56 +134,56 @@ export class WorkoutComponent implements OnInit {
         this.exerciseOne = "Tempo 5km Run @60/70% effort";
         this.demoExerciseOne = this.example;
 
-        this.exerciseTwo = "8 X 200m interval runs @ 80/85% effort";
+        this.exerciseTwo = this.exerciseIntervals200m;
         this.demoExerciseTwo = this.example;
       }
         break;
 
       case 4: this.workoutType = "RESISTANCE"
       if(this.sessionNumber == 3 || this.sessionNumber == 11 || this.sessionNumber == 18){
-        this.exerciseOne = "30 minute resistance circuit - Follow video";
+        this.exerciseOne = this.exerciseResistance;
         this.demoExerciseOne = this.example;
       }
         break;
 
       case 5: this.workoutType = "RUNNING AND RESISTANCE"
       if(this.sessionNumber == 5 || this.sessionNumber == 6 || this.sessionNumber == 14){
-        this.exerciseOne = "Easy 3km Run @50/60% effort";
+        this.exerciseOne = this.exercise3kEasy;
         this.demoExerciseOne = this.example;
 
-        this.exerciseTwo = "30 minute resistance circuit - Follow video";
+        this.exerciseTwo = this.exerciseResistance;
         this.demoExerciseTwo = this.example;
       }
       if(this.sessionNumber == 17){
-        this.exerciseOne = "Easy 4km Run @50/60% effort";
+        this.exerciseOne = this.exercise4kEasy;
         this.demoExerciseOne = this.example;
 
-        this.exerciseTwo = "30 minute resistance circuit - Follow video";
+        this.exerciseTwo = this.exerciseResistance;
         this.demoExerciseTwo = this.example;
       }
 
       if(this.sessionNumber == 24){
-        this.exerciseOne = "Easy 2km Run @50/60% effort";
+        this.exerciseOne = this.exercise2kEasy;
         this.demoExerciseOne = this.example;
 
-        this.exerciseTwo = "30 minute resistance circuit - Follow video";
+        this.exerciseTwo = this.exerciseResistance;
         this.demoExerciseTwo = this.example;
       }
         break;
 
       case 6: this.workoutType = "Walk"
-      if(this.sessionNumber == 4 || this.sessionNumber == 7 || this.sessionNumber == 15 || this.sessionNumber == 16 || this.sessionNumber == 22){
-        this.exerciseOne = "40/60 minute walk";
+      if(this.sessionNumber == 1 || this.sessionNumber == 4 || this.sessionNumber == 7 || this.sessionNumber == 15 || this.sessionNumber == 16 || this.sessionNumber == 22){
+        this.exerciseOne = this.exerciseWalk;
         this.demoExerciseOne = this.example;
       }
         break;
       case 7: this.workoutType = "WALKING AND RESISTANCE"
 
         if(this.sessionNumber == 8 || this.sessionNumber == 20 || this.sessionNumber == 23){
-          this.exerciseOne = "40/60 minute walk";
+          this.exerciseOne = this.exerciseWalk;
           this.demoExerciseOne = this.example;
 
-          this.exerciseTwo = "30 minute resistance circuit - Follow video";
+          this.exerciseTwo = this.exerciseResistance;
           this.demoExerciseTwo = this.example;
         }
         break
@@ -343,16 +356,65 @@ export class WorkoutComponent implements OnInit {
       window.alert(e); 
     }
  
-  }
+  } 
 
-  async squatDemo(){
-    this.url = "https://www.youtube.com/embed/AtKZKl7Bgu0"
-    this.openVideo()
-  }
+  async showVideo(exercise : string){
 
-  async benchPressDemo(){
-    this.url = "https://www.youtube.com/embed/cvBNqxlXmtM"
-    this.openVideo()
+    const type = this.sessionType;
+    const number = this.sessionNumber;
+
+    switch (exercise) {
+      case this.exerciseType5k: 
+        this.url = "https://www.youtube.com/embed/AtKZKl7Bgu0";
+        this.openVideo();
+          break;
+      case this.exercisePlank:
+        this.url = "https://www.youtube.com/embed/ASdvN_XEl_c";
+        this.openVideo();
+          break;
+      case this.exercisePressUps:
+        this.url = "https://www.youtube.com/embed/HMWeJ6dyq9w";
+        this.openVideo();
+          break;
+      case this.exerciseSquats: 
+        this.url = "https://www.youtube.com/embed/aclHkVaku9U"
+        this.openVideo() 
+          break;
+      case this.exercise2kEasy: 
+        this.url = "https://www.youtube.com/embed/210qtHwAGpA";
+        this.openVideo();
+          break;
+      case this.exercise3kEasy: 
+        this.url = "https://www.youtube.com/embed/q90AtB707k0";
+        this.openVideo();
+          break;
+      case this.exercise4kEasy: 
+        this.url = "https://www.youtube.com/embed/3ji1dia7oj0";
+        this.openVideo();
+          break;
+      case this.exerciseResistance: 
+        this.url = "https://www.youtube.com/embed/eRhueOnrVkU";
+        this.openVideo();
+          break;
+      case this.exerciseWalk: 
+        this.url = "https://www.youtube.com/embed/BEZF20oo5UQ";
+        this.openVideo();
+          break;
+      case this.exerciseIntervals400m: 
+        this.url = "https://www.youtube.com/embed/8x7-fJW-Bww";
+        this.openVideo();
+          break;
+      case this.exerciseIntervals200m: 
+        this.url = "https://www.youtube.com/embed/OlHl7Mvm3b4";
+        this.openVideo();
+          break;
+      case this.exercise5kTempo: 
+        this.url = "https://www.youtube.com/embed/nviIHEXNAL8";
+        this.openVideo();
+          break;
+
+    }
+
   }
 
   async openVideo(){
