@@ -46,6 +46,7 @@ export class WorkoutComponent implements OnInit {
 
   sessionNumber = -1;
   sessionType = -1; 
+  sessionWorkout = "";
 
   workoutType = "";
 
@@ -362,6 +363,7 @@ export class WorkoutComponent implements OnInit {
 
     const type = this.sessionType;
     const number = this.sessionNumber;
+    this.sessionWorkout = exercise;
 
     switch (exercise) {
       case this.exerciseType5k: 
@@ -418,7 +420,15 @@ export class WorkoutComponent implements OnInit {
   }
 
   async openVideo(){
-    this.dialog.open(VideoComponent, {width: '90%', height: '90%', data: this.url})
+    //this.dialog.open(VideoComponent, {width: '90%', height: '90%', data: this.url})
+
+    this.dialog.open(VideoComponent, {width: '90%', height: '90%', data:{
+      url : this.url,
+      sessionNumber: this.sessionNumber,
+      sessionType: this.sessionType,
+      sessionWorkout : this.sessionWorkout 
+    }})
+
   }
 
 }
