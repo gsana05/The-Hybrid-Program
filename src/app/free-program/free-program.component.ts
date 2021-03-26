@@ -211,7 +211,7 @@ checkCycleIsCompleted() : Boolean {
     this.dialog.open(FreeProgramCompletedComponent, {width: '90%', height: '90%'});
   }
   else{
-    this.dialog.open(WorkoutComponent, {width: '90%', height: '90%', data:{
+    this.dialog.open(WorkoutComponent, {width: '100%', height: '100%', data:{
       sessionNumber: sessionNumber,
       sessionType: sessionType
     }})

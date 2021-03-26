@@ -82,10 +82,21 @@ export class VideoComponent implements OnInit {
         
           break;
       case this.running:
+      this.sets = 1;
+      this.repetitions = 1; 
+      this.restTime = "Only one set and repetition so no rest required";
+      if(this.sessionNumber == 2){
+        this.exerciseName = "5k super easy run"
+        this.keyInfo = "Running to build mileage - run at 5/6 out of 10 effort with the aim to keep your heart rate below 140bpm. DO NOT think about time and speed, just enjoy.";
+      }
         
           break;
       case this.resistance: 
         
+      if(this.sessionNumber == 3){
+        this.exerciseName = "Testng 3"
+        this.keyInfo = "key info test 3";
+      }
 
           break;
       case this.runningAndResistance: 
@@ -93,7 +104,14 @@ export class VideoComponent implements OnInit {
 
           break;
       case this.rest: 
+      this.sets = 1;
+      this.repetitions = 1; 
+      this.restTime = "Only one set and repetition so no rest required";
         
+      if(this.sessionNumber == 1){
+        this.exerciseName = "45/90 Minute walk";
+        this.keyInfo = "Walk for a minimum of 45 minutes up to 90 minutes. Recovery session to burn calories without exhausting yourself.";
+      }
 
           break;
       case this.walkingAndResistance: 

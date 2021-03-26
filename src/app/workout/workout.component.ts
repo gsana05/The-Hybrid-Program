@@ -54,13 +54,15 @@ export class WorkoutComponent implements OnInit {
   exerciseTwo = "";
   exerciseThree = "";
   exerciseFour = "";
+  exerciseFive = "";
 
   demoExerciseOne = "";
   demoExerciseTwo = "";
   demoExerciseThree = "";
   demoExerciseFour = "";
+  demoExerciseFive = "";
 
-  example = "Demonstration";
+  example = "Demo & info";
 
   fivekmRun = 0.0;
   plank = 0.0;
@@ -71,13 +73,14 @@ export class WorkoutComponent implements OnInit {
   exercisePressUps = "Press ups";
   exerciseSquats = "Squats";
   exercise2kEasy = "Easy 2km Run @50/60% effort";
-  exercise3kEasy = "Easy 3km Run @50/60% effort";
+  exercise3kEasy = "Easy 5km Run @50/60% effort";
   exercise4kEasy = "Easy 4km Run @50/60% effort";
   exerciseResistance = "30 minute resistance circuit - Follow video";
-  exerciseWalk = "40/60 minute walk";
+  exerciseWalk = "45/90 minute walk";
   exerciseIntervals400m = "8 X 400m interval runs @ 70/80% effort";
   exerciseIntervals200m = "8 X 200m interval runs @ 80/85% effort";
   exercise5kTempo = "Tempo 5km Run @60/70% effort"; 
+  workoutInfo = "";
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialog: MatDialog,  private programService : ProgramsService, private afAuth: AngularFireAuth) {
 
@@ -93,12 +96,10 @@ export class WorkoutComponent implements OnInit {
         this.exerciseOne = this.exerciseType5k;
         this.exerciseTwo = this.exercisePlank;
         this.exerciseThree = this.exercisePressUps;
-        this.exerciseFour = this.exerciseSquats;
 
         this.demoExerciseOne = this.example;
         this.demoExerciseTwo = this.example;
         this.demoExerciseThree = this.example;
-        this.demoExerciseFour = this.example;
       }
 
         break;
@@ -141,9 +142,30 @@ export class WorkoutComponent implements OnInit {
         break;
 
       case 4: this.workoutType = "RESISTANCE"
-      if(this.sessionNumber == 3 || this.sessionNumber == 11 || this.sessionNumber == 18){
+      if(this.sessionNumber == 11 || this.sessionNumber == 18){
         this.exerciseOne = this.exerciseResistance;
         this.demoExerciseOne = this.example;
+      }
+
+      if(this.sessionNumber == 3){
+
+        this.workoutInfo = "Circuit training: \n 40 seconds on with 20 seconds rest per exercise. One round is complete after all 5 exercises (5 minutes). Complete 4/6 rounds (20/30 minutes for full workout).";
+
+        this.exerciseOne = "Press ups"
+        this.demoExerciseOne = this.example;
+
+        this.exerciseTwo = "squats"
+        this.demoExerciseTwo = this.example;
+
+        this.exerciseThree = "Dumbbell row"
+        this.demoExerciseThree = this.example;
+
+        this.exerciseFour = "Lunges"
+        this.demoExerciseFour = this.example;
+
+        this.exerciseFive = "Curl and press"
+        this.demoExerciseFive = this.example;
+
       }
         break;
 
