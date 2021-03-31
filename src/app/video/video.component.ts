@@ -36,9 +36,10 @@ export class VideoComponent implements OnInit {
   exerciseSquats = "Squats";
   exercise2kEasy = "Easy 2km Run @50/60% effort";
   exercise5kEasy = "Easy 5km Run @50/60% effort";
+  exercise6kEasy = "Easy 6km Run @50/60% effort";
   exercise4kEasy = "Easy 4km Run @50/60% effort";
   exerciseCore = "10 minute core - Follow video";
-  exerciseWalk = "40/60 minute walk";
+  exerciseWalk = "45/90 minute walk";
   exerciseIntervals400m = "8 X 400m interval runs @ 80/90% effort";
   exerciseIntervals200m = "8 X 200m interval runs @ 80/85% effort";
   exercise5kTempo = "Tempo 5km Run @60/70% effort"; 
@@ -95,7 +96,7 @@ export class VideoComponent implements OnInit {
         this.keyInfo = "Running to build mileage - run at 5/6 out of 10 effort with the aim to keep your heart rate below 140bpm. DO NOT think about time and speed, just enjoy.";
       }
 
-      if(this.sessionNumber == 10){
+      if(this.sessionNumber == 10 || this.sessionNumber == 18){
 
         if(this.sessionWorkout == this.exercise2kEasy){
           this.sets = "1";
@@ -113,13 +114,23 @@ export class VideoComponent implements OnInit {
           this.keyInfo = "400m run at 80/90% of max effort followed by 90/120 seconds rest. Complete 8 reps. Heart rate target is 160/170 bpm (beats per minute).";
         }
 
-        
+      }
+
+      if(this.sessionNumber == 14){
+
+        if(this.sessionWorkout == this.exercise6kEasy){
+          this.sets = "1";
+          this.repetitions = "1"; 
+          this.restTime = "Only one set and repetition so no rest required";
+          this.exerciseName = "6k super easy run"
+          this.keyInfo = "Running to build mileage - run at 5/6 out of 10 effort with the aim to keep your heart rate below 140bpm. DO NOT think about time and speed, just enjoy.";
+        }   
       }
         
           break;
       case this.resistance: 
         
-      if(this.sessionNumber == 3 || this.sessionNumber == 9 || this.sessionNumber == 13){
+      if(this.sessionNumber == 3 || this.sessionNumber == 9 || this.sessionNumber == 13 || this.sessionNumber == 19){
 
         this.sets = "4 to 6";
         this.repetitions = "40 seconds all you can with correct form"; 
@@ -153,7 +164,7 @@ export class VideoComponent implements OnInit {
           break;
       case this.runningAndResistance: 
 
-      if(this.sessionNumber == 5 || this.sessionNumber == 6 || this.sessionNumber == 11 ){
+      if(this.sessionNumber == 5 || this.sessionNumber == 6 || this.sessionNumber == 11 || this.sessionNumber == 15){
 
         if(this.sessionWorkout == this.exercise5kEasy){
           this.sets = "1";
@@ -189,7 +200,7 @@ export class VideoComponent implements OnInit {
       this.repetitions = "1"; 
       this.restTime = "Only one set and repetition so no rest required";
         
-      if(this.sessionNumber == 1 || this.sessionNumber == 4 || this.sessionNumber == 7 || this.sessionNumber == 8 || this.sessionNumber == 12){
+      if(this.sessionNumber == 1 || this.sessionNumber == 4 || this.sessionNumber == 7 || this.sessionNumber == 8 || this.sessionNumber == 12 || this.sessionNumber == 16 || this.sessionNumber == 17){
         this.exerciseName = "45/90 Minute walk";
         this.keyInfo = "Walk for a minimum of 45 minutes up to 90 minutes. Recovery session to burn calories without exhausting yourself.";
       }
@@ -197,6 +208,25 @@ export class VideoComponent implements OnInit {
           break;
       case this.walkingAndResistance: 
         
+      if(this.sessionNumber == 20){
+
+        if(this.sessionWorkout == this.exerciseCore){
+          this.sets = "1";
+          this.repetitions = "1"; 
+          this.restTime = "15 seconds between each exercise";
+          this.exerciseName = this.exerciseCore
+          this.keyInfo = "Isometric exercises to build core strength and stability";
+        }
+
+        if(this.sessionWorkout == this.exerciseWalk){
+          this.sets = "1";
+          this.repetitions = "1"; 
+          this.restTime = "Only one set and repetition so no rest required";
+          this.exerciseName = "45/90 Minute walk";
+          this.keyInfo = "Walk for a minimum of 45 minutes up to 90 minutes. Recovery session to burn calories without exhausting yourself.";
+        }
+
+      }
 
           break;
     }

@@ -74,6 +74,7 @@ export class WorkoutComponent implements OnInit {
   exerciseSquats = "Squats";
   exercise2kEasy = "Easy 2km Run @50/60% effort";
   exercise5kEasy = "Easy 5km Run @50/60% effort";
+  exercise6kEasy = "Easy 6km Run @50/60% effort";
   exercise4kEasy = "Easy 4km Run @50/60% effort";
   exerciseCore = "10 minute core - Follow video";
   exerciseWalk = "45/90 minute walk";
@@ -110,7 +111,7 @@ export class WorkoutComponent implements OnInit {
 
       case 2: 
       this.workoutType = "STRETCH AND CORE";
-      if(this.sessionNumber == 19 || this.sessionNumber == 25 || this.sessionNumber == 26){
+      if(this.sessionNumber == 25 || this.sessionNumber == 26){
         this.exerciseOne = "Dynamic stretching & core - Follow video";
         this.demoExerciseOne = this.example;
       }
@@ -123,13 +124,19 @@ export class WorkoutComponent implements OnInit {
         this.demoExerciseOne = this.example;
       }
 
-      if(this.sessionNumber == 10){
+      if(this.sessionNumber == 10 || this.sessionNumber == 18){
         this.exerciseOne = this.exercise2kEasy;
         this.demoExerciseOne = this.example;
 
         this.exerciseTwo = this.exerciseIntervals400m;
         this.demoExerciseTwo = this.example;
       }
+
+      if(this.sessionNumber == 14){
+        this.exerciseOne = this.exercise6kEasy;
+        this.demoExerciseOne = this.example;
+      }
+     
 
       if(this.sessionNumber == 21){
         this.exerciseOne = "Tempo 5km Run @60/70% effort";
@@ -141,12 +148,8 @@ export class WorkoutComponent implements OnInit {
         break;
 
       case 4: this.workoutType = "RESISTANCE"
-      if(this.sessionNumber == 18){
-        this.exerciseOne = this.exerciseCore;
-        this.demoExerciseOne = this.example;
-      }
 
-      if(this.sessionNumber == 3 || this.sessionNumber == 9 || this.sessionNumber == 13){
+      if(this.sessionNumber == 3 || this.sessionNumber == 9 || this.sessionNumber == 13 || this.sessionNumber == 19){
 
         this.workoutInfo = "Circuit training: \n 40 seconds on with 20 seconds rest per exercise. One round is complete after all 5 exercises (5 minutes). Complete 4/6 rounds (20/30 minutes for full workout).";
 
@@ -169,18 +172,8 @@ export class WorkoutComponent implements OnInit {
         break;
 
       case 5: this.workoutType = "RUNNING AND RESISTANCE"
-      if(this.sessionNumber == 5 || this.sessionNumber == 6 || this.sessionNumber == 14 || this.sessionNumber == 11){
+      if(this.sessionNumber == 5 || this.sessionNumber == 6 || this.sessionNumber == 11 || this.sessionNumber == 15){
         this.exerciseOne = this.exercise5kEasy;
-        this.demoExerciseOne = this.example;
-
-        this.exerciseTwo = this.exerciseCore;
-        this.demoExerciseTwo = this.example;
-
-        this.exerciseThree = this.exercisePressUps;
-        this.demoExerciseThree = this.example;
-      }
-      if(this.sessionNumber == 17){
-        this.exerciseOne = this.exercise4kEasy;
         this.demoExerciseOne = this.example;
 
         this.exerciseTwo = this.exerciseCore;
@@ -203,7 +196,7 @@ export class WorkoutComponent implements OnInit {
         break;
 
       case 6: this.workoutType = "Walk"
-      if(this.sessionNumber == 1 || this.sessionNumber == 4 || this.sessionNumber == 7 || this.sessionNumber == 8 || this.sessionNumber == 12 || this.sessionNumber == 15 || this.sessionNumber == 16 || this.sessionNumber == 22){
+      if(this.sessionNumber == 1 || this.sessionNumber == 4 || this.sessionNumber == 7 || this.sessionNumber == 8 || this.sessionNumber == 12 || this.sessionNumber == 16 || this.sessionNumber == 17 || this.sessionNumber == 22){
         this.exerciseOne = this.exerciseWalk;
         this.demoExerciseOne = this.example;
       }
@@ -420,6 +413,10 @@ export class WorkoutComponent implements OnInit {
         this.url = "https://www.youtube.com/embed/q90AtB707k0";
         this.openVideo();
           break;
+      case this.exercise6kEasy:
+        this.url = "https://www.youtube.com/embed/q90AtB707k0";
+        this.openVideo();
+        break
       case this.exercise4kEasy: 
         this.url = "https://www.youtube.com/embed/3ji1dia7oj0";
         this.openVideo();
