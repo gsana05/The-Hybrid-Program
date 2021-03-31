@@ -63,10 +63,10 @@ export class VideoComponent implements OnInit {
       this.repetitions = "1"; 
       this.restTime = "Only one set and repetition so no rest required";
 
-      if(this.sessionNumber == 0){
+      if(this.sessionNumber == 0 || this.sessionNumber == 27){
         if(this.sessionWorkout == this.exerciseType5k){
           this.exerciseName = "5km race run";
-          this.keyInfo = "Run a race 5km! Let's find out your starting point.";
+          this.keyInfo = "Run a race 5km! Complete 5km as quickly as possible. Pace yourself correctly so you do not burn out early in the run.";
         }
         else if(this.sessionWorkout == this.exercisePlank){
           this.exerciseName = "Plank"
@@ -114,6 +114,24 @@ export class VideoComponent implements OnInit {
           this.keyInfo = "400m run at 80/90% of max effort followed by 90/120 seconds rest. Complete 8 reps. Heart rate target is 160/170 bpm (beats per minute).";
         }
 
+      }
+
+      if(this.sessionNumber == 21){
+        if(this.sessionWorkout == this.exercise5kTempo){
+          this.sets = "1";
+          this.repetitions = "1"; 
+          this.restTime = "Only one set and repetition so no rest required";
+          this.exerciseName = "5k at 7/10 effort"
+          this.keyInfo = "This is a tempo run not a maximum effort run. Run 10% outside of your confort zone.";
+        }
+
+        if(this.sessionWorkout == this.exerciseIntervals200m){
+          this.sets = "1";
+          this.repetitions = "8"; 
+          this.restTime = "90 seconds rest between each repetition";
+          this.exerciseName = this.exerciseIntervals400m;
+          this.keyInfo = "200m run at 80/90% of max effort followed by 90 seconds rest. Complete 8 reps. Heart rate target is 160/170 bpm (beats per minute).";
+        }
       }
 
       if(this.sessionNumber == 14){
@@ -192,6 +210,32 @@ export class VideoComponent implements OnInit {
 
         
       }
+
+      if(this.sessionNumber == 23){
+        if(this.sessionWorkout == this.exercise2kEasy){
+          this.sets = "1";
+          this.repetitions = "1"; 
+          this.restTime = "Only one set and repetition so no rest required";
+          this.exerciseName = "2k super easy run"
+          this.keyInfo = "Running to build mileage - run at 5/6 out of 10 effort with the aim to keep your heart rate below 140bpm. DO NOT think about time and speed, just enjoy.";
+        }
+
+        if(this.sessionWorkout == this.exerciseCore){
+          this.sets = "1";
+          this.repetitions = "1"; 
+          this.restTime = "15 seconds between each exercise";
+          this.exerciseName = this.exerciseCore
+          this.keyInfo = "Isometric exercises to build core strength and stability";
+        }
+
+        if(this.sessionWorkout == this.exercisePressUps){
+          this.sets = "10";
+          this.repetitions = "5"; 
+          this.restTime = "90/120 seconds between each exercise";
+          this.exerciseName = this.exercisePressUps;
+          this.keyInfo = "Press ups to build upper body strength and endurance. 10 sets of 5 reps so you will complete 50 reps. You can do them all your knees if needed.";
+        }
+      }
         
 
           break;
@@ -200,7 +244,7 @@ export class VideoComponent implements OnInit {
       this.repetitions = "1"; 
       this.restTime = "Only one set and repetition so no rest required";
         
-      if(this.sessionNumber == 1 || this.sessionNumber == 4 || this.sessionNumber == 7 || this.sessionNumber == 8 || this.sessionNumber == 12 || this.sessionNumber == 16 || this.sessionNumber == 17){
+      if(this.sessionNumber == 1 || this.sessionNumber == 4 || this.sessionNumber == 7 || this.sessionNumber == 8 || this.sessionNumber == 12 || this.sessionNumber == 16 || this.sessionNumber == 17 || this.sessionNumber == 22 || this.sessionNumber == 24 || this.sessionNumber == 25 || this.sessionNumber == 26){
         this.exerciseName = "45/90 Minute walk";
         this.keyInfo = "Walk for a minimum of 45 minutes up to 90 minutes. Recovery session to burn calories without exhausting yourself.";
       }

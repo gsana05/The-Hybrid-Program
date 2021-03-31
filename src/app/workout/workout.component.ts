@@ -183,6 +183,17 @@ export class WorkoutComponent implements OnInit {
         this.demoExerciseThree = this.example;
       }
 
+      if(this.sessionNumber == 23){
+        this.exerciseOne = this.exercise2kEasy;
+        this.demoExerciseOne = this.example;
+
+        this.exerciseTwo = this.exerciseCore;
+        this.demoExerciseTwo = this.example;
+
+        this.exerciseThree = this.exercisePressUps;
+        this.demoExerciseThree = this.example;
+      }
+
       if(this.sessionNumber == 24){
         this.exerciseOne = this.exercise2kEasy;
         this.demoExerciseOne = this.example;
@@ -196,14 +207,14 @@ export class WorkoutComponent implements OnInit {
         break;
 
       case 6: this.workoutType = "Walk"
-      if(this.sessionNumber == 1 || this.sessionNumber == 4 || this.sessionNumber == 7 || this.sessionNumber == 8 || this.sessionNumber == 12 || this.sessionNumber == 16 || this.sessionNumber == 17 || this.sessionNumber == 22){
+      if(this.sessionNumber == 1 || this.sessionNumber == 4 || this.sessionNumber == 7 || this.sessionNumber == 8 || this.sessionNumber == 12 || this.sessionNumber == 16 || this.sessionNumber == 17 || this.sessionNumber == 22 || this.sessionNumber == 24 || this.sessionNumber == 25 || this.sessionNumber == 26){
         this.exerciseOne = this.exerciseWalk;
         this.demoExerciseOne = this.example;
       }
         break;
       case 7: this.workoutType = "WALKING AND RESISTANCE"
 
-        if(this.sessionNumber == 20 || this.sessionNumber == 23){
+        if(this.sessionNumber == 20){
           this.exerciseOne = this.exerciseWalk;
           this.demoExerciseOne = this.example;
 
