@@ -73,14 +73,18 @@ export class WorkoutComponent implements OnInit {
   exercisePressUps = "Press ups";
   exerciseSquats = "Squats";
   exercise2kEasy = "Easy 2km Run @50/60% effort";
-  exercise3kEasy = "Easy 5km Run @50/60% effort";
+  exercise5kEasy = "Easy 5km Run @50/60% effort";
   exercise4kEasy = "Easy 4km Run @50/60% effort";
-  exerciseResistance = "30 minute resistance circuit - Follow video";
+  exerciseCore = "10 minute core - Follow video";
   exerciseWalk = "45/90 minute walk";
-  exerciseIntervals400m = "8 X 400m interval runs @ 70/80% effort";
+  exerciseIntervals400m = "8 X 400m interval runs @ 80/90% effort";
   exerciseIntervals200m = "8 X 200m interval runs @ 80/85% effort";
   exercise5kTempo = "Tempo 5km Run @60/70% effort"; 
   workoutInfo = "";
+  curlAndPress = "Curl and press";
+  lunges = "Lunges";
+  dumbbellRow = "Dumbbell row";
+
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialog: MatDialog,  private programService : ProgramsService, private afAuth: AngularFireAuth) {
 
@@ -106,7 +110,7 @@ export class WorkoutComponent implements OnInit {
 
       case 2: 
       this.workoutType = "STRETCH AND CORE";
-      if(this.sessionNumber == 10 || this.sessionNumber == 13 || this.sessionNumber == 19 || this.sessionNumber == 25 || this.sessionNumber == 26){
+      if(this.sessionNumber == 19 || this.sessionNumber == 25 || this.sessionNumber == 26){
         this.exerciseOne = "Dynamic stretching & core - Follow video";
         this.demoExerciseOne = this.example;
       }
@@ -115,16 +119,11 @@ export class WorkoutComponent implements OnInit {
 
       case 3: this.workoutType = "RUNNING"
       if(this.sessionNumber == 2){
-        this.exerciseOne = this.exercise3kEasy;
+        this.exerciseOne = this.exercise5kEasy;
         this.demoExerciseOne = this.example;
       }
 
-      if(this.sessionNumber == 9){
-        this.exerciseOne = this.exercise4kEasy;
-        this.demoExerciseOne = this.example;
-      }
-
-      if(this.sessionNumber == 12){
+      if(this.sessionNumber == 10){
         this.exerciseOne = this.exercise2kEasy;
         this.demoExerciseOne = this.example;
 
@@ -142,71 +141,80 @@ export class WorkoutComponent implements OnInit {
         break;
 
       case 4: this.workoutType = "RESISTANCE"
-      if(this.sessionNumber == 11 || this.sessionNumber == 18){
-        this.exerciseOne = this.exerciseResistance;
+      if(this.sessionNumber == 18){
+        this.exerciseOne = this.exerciseCore;
         this.demoExerciseOne = this.example;
       }
 
-      if(this.sessionNumber == 3){
+      if(this.sessionNumber == 3 || this.sessionNumber == 9 || this.sessionNumber == 13){
 
         this.workoutInfo = "Circuit training: \n 40 seconds on with 20 seconds rest per exercise. One round is complete after all 5 exercises (5 minutes). Complete 4/6 rounds (20/30 minutes for full workout).";
 
-        this.exerciseOne = "Press ups"
+        this.exerciseOne = this.exercisePressUps;
         this.demoExerciseOne = this.example;
 
-        this.exerciseTwo = "squats"
+        this.exerciseTwo = this.exerciseSquats;
         this.demoExerciseTwo = this.example;
 
-        this.exerciseThree = "Dumbbell row"
+        this.exerciseThree = this.dumbbellRow; 
         this.demoExerciseThree = this.example;
 
-        this.exerciseFour = "Lunges"
+        this.exerciseFour = this.lunges;
         this.demoExerciseFour = this.example;
 
-        this.exerciseFive = "Curl and press"
+        this.exerciseFive = this.curlAndPress; 
         this.demoExerciseFive = this.example;
 
       }
         break;
 
       case 5: this.workoutType = "RUNNING AND RESISTANCE"
-      if(this.sessionNumber == 5 || this.sessionNumber == 6 || this.sessionNumber == 14){
-        this.exerciseOne = this.exercise3kEasy;
+      if(this.sessionNumber == 5 || this.sessionNumber == 6 || this.sessionNumber == 14 || this.sessionNumber == 11){
+        this.exerciseOne = this.exercise5kEasy;
         this.demoExerciseOne = this.example;
 
-        this.exerciseTwo = this.exerciseResistance;
+        this.exerciseTwo = this.exerciseCore;
         this.demoExerciseTwo = this.example;
+
+        this.exerciseThree = this.exercisePressUps;
+        this.demoExerciseThree = this.example;
       }
       if(this.sessionNumber == 17){
         this.exerciseOne = this.exercise4kEasy;
         this.demoExerciseOne = this.example;
 
-        this.exerciseTwo = this.exerciseResistance;
+        this.exerciseTwo = this.exerciseCore;
         this.demoExerciseTwo = this.example;
+
+        this.exerciseThree = this.exercisePressUps;
+        this.demoExerciseThree = this.example;
       }
 
       if(this.sessionNumber == 24){
         this.exerciseOne = this.exercise2kEasy;
         this.demoExerciseOne = this.example;
 
-        this.exerciseTwo = this.exerciseResistance;
+        this.exerciseTwo = this.exerciseCore;
         this.demoExerciseTwo = this.example;
+
+        this.exerciseThree = this.exercisePressUps;
+        this.demoExerciseThree = this.example;
       }
         break;
 
       case 6: this.workoutType = "Walk"
-      if(this.sessionNumber == 1 || this.sessionNumber == 4 || this.sessionNumber == 7 || this.sessionNumber == 15 || this.sessionNumber == 16 || this.sessionNumber == 22){
+      if(this.sessionNumber == 1 || this.sessionNumber == 4 || this.sessionNumber == 7 || this.sessionNumber == 8 || this.sessionNumber == 12 || this.sessionNumber == 15 || this.sessionNumber == 16 || this.sessionNumber == 22){
         this.exerciseOne = this.exerciseWalk;
         this.demoExerciseOne = this.example;
       }
         break;
       case 7: this.workoutType = "WALKING AND RESISTANCE"
 
-        if(this.sessionNumber == 8 || this.sessionNumber == 20 || this.sessionNumber == 23){
+        if(this.sessionNumber == 20 || this.sessionNumber == 23){
           this.exerciseOne = this.exerciseWalk;
           this.demoExerciseOne = this.example;
 
-          this.exerciseTwo = this.exerciseResistance;
+          this.exerciseTwo = this.exerciseCore;
           this.demoExerciseTwo = this.example;
         }
         break
@@ -408,7 +416,7 @@ export class WorkoutComponent implements OnInit {
         this.url = "https://www.youtube.com/embed/210qtHwAGpA";
         this.openVideo();
           break;
-      case this.exercise3kEasy: 
+      case this.exercise5kEasy: 
         this.url = "https://www.youtube.com/embed/q90AtB707k0";
         this.openVideo();
           break;
@@ -416,7 +424,7 @@ export class WorkoutComponent implements OnInit {
         this.url = "https://www.youtube.com/embed/3ji1dia7oj0";
         this.openVideo();
           break;
-      case this.exerciseResistance: 
+      case this.exerciseCore: 
         this.url = "https://www.youtube.com/embed/eRhueOnrVkU";
         this.openVideo();
           break;
@@ -436,6 +444,18 @@ export class WorkoutComponent implements OnInit {
         this.url = "https://www.youtube.com/embed/nviIHEXNAL8";
         this.openVideo();
           break;
+      case this.curlAndPress:
+        this.url = "https://www.youtube.com/embed/l6ApagwH0TY";
+        this.openVideo();
+        break
+      case this.lunges:
+        this.url = "https://www.youtube.com/embed/QOVaHwm-Q6U";
+        this.openVideo();
+        break
+      case this.dumbbellRow:
+        this.url = "https://www.youtube.com/embed/pTT_MCK0L90";
+        this.openVideo();
+        break;
 
     }
 
