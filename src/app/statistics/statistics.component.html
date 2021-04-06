@@ -1,5 +1,23 @@
 <div class="main-container">
 
+    <div class="nav-bar">
+        <mat-tab-group class="remove-border-bottom" mat-align-tabs="center" #tabGroup (selectedTabChange)="onTabChange($event)" [selectedIndex]="getSelectedIndex()">
+            
+            <mat-tab *ngIf="true" label="tab1">
+                <ng-template mat-tab-label>
+                    Free Program Stats
+                </ng-template>
+            </mat-tab>
+
+            <mat-tab *ngIf="true" label="tab2">
+                <ng-template mat-tab-label>
+                    Advanced Program Stats
+                </ng-template>
+            </mat-tab>
+
+          </mat-tab-group>
+    </div>
+
     <div class="top">
 
         <div class="graph-one">

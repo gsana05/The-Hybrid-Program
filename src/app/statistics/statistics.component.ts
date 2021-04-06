@@ -9,6 +9,7 @@ import {formatDate} from '@angular/common';
 import {Inject, LOCALE_ID, Pipe, PipeTransform} from '@angular/core';
 import firebase from 'firebase/app';
 import Timestamp = firebase.firestore.Timestamp;
+import {MatTab, MatTabChangeEvent} from '@angular/material/tabs';
 
 @Component({
   selector: 'app-statistics',
@@ -99,7 +100,17 @@ walkingAndResistanceCount = 0;
 
 hasGraphData = false; 
 
-  constructor(private programService : ProgramsService, @Inject(LOCALE_ID) private locale: string) { }
+tabSelected = 3;
+tabName = "tab3";
+index = 2
+
+  constructor(private programService : ProgramsService, @Inject(LOCALE_ID) private locale: string) { 
+
+    this.tabSelected = 1;
+    this.tabName = "tab1";
+    this.index = 0
+
+  }
 
   ngOnInit(): void {
 
@@ -168,7 +179,77 @@ hasGraphData = false;
           })
         })
 
-        const completedSessions = data.totalCompletedSessions
+        this.setUpSessionCompletedMissedOpenGraphFree(data)
+        this.setUpGraphWorkoutTypesForFree()
+
+      })
+    });
+
+  }
+
+  getSelectedIndex(): number {
+    return this.index
+  }
+
+  setUpSessionCompletedMissedOpenGraphAdvancedPlan(data : FreeProgram){
+    const completedSessions = data.totalCompletedSessions
+        const missedSessions = data.totalMissedSessions
+        //const totalSessionsStatusSet = completedSessions + missedSessions
+        const openSessions = this.numberOfWorkoutsPerCycle - (completedSessions + missedSessions)
+
+        var myChart = new Chart("horizontalBar", {
+          type: 'horizontalBar',
+          data: {
+            labels: ['Man utd', 'Liverpool', 'Chelsea'],
+            datasets: [{
+              label: '',
+              data: [2, 12, 14],
+              backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)'
+              ],
+              borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)'
+              ],
+              borderWidth: 1
+            }]
+          },
+          options: {
+              responsive: true,
+              scales: {
+                xAxes: [{
+                  display: true,
+                  scaleLabel: {
+                    display: false,
+                    labelString: 'Number of sessions'
+                  },
+                  ticks: {
+                    // forces step size to be 5 units
+                    min: 0,
+                    max: 28,
+                    stepSize: 1 // <----- This prop sets the stepSize
+                  }
+                }],
+                yAxes: [{
+                  display: true,
+                  scaleLabel: {
+                    display: false,
+                    labelString: 'Status'
+                  }
+                }]
+              },
+              legend: {
+                display: false // hide label
+              }
+          }
+        });
+  }
+
+  setUpSessionCompletedMissedOpenGraphFree(data : FreeProgram){
+    const completedSessions = data.totalCompletedSessions
         const missedSessions = data.totalMissedSessions
         //const totalSessionsStatusSet = completedSessions + missedSessions
         const openSessions = this.numberOfWorkoutsPerCycle - (completedSessions + missedSessions)
@@ -222,50 +303,117 @@ hasGraphData = false;
               }
           }
         });
+  }
 
-        var myChart = new Chart("barChart", {
-          type: 'bar',
-          data: {
-            labels: ['Test', 'Running', 'Resistance', 'Hybrid', 'Rest'],
-            datasets: [{
-              label: '',
-              data: [this.workoutTestCount, this.runningCount, this.resistanceCount, this.runningAndResistanceCount, this.restCount],
-              backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-              ],
-              borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-              ],
-              borderWidth: 1
-            }]
-          },
-          options: {
-            responsive: true,
-            scales: {
-              yAxes: [{
-                ticks: {
-                  beginAtZero: true,
-                  precision: 0 // whole numbers on yAxis
-                }
-              }]
-            },
-              legend: {
-                display: false // hide label
-              }
+  setUpGraphWorkoutTypesForAdvancedPlan(){
+    var myChart = new Chart("barChart", {
+      type: 'bar',
+      data: {
+        labels: ['Love', 'Happy', 'Kind', 'Joy', 'Peace'],
+        datasets: [{
+          label: '',
+          data: [9, 4, 8, 1, 7],
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(255, 159, 64, 0.2)'
+          ],
+          borderColor: [
+            'rgba(255, 99, 132, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)'
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true,
+              precision: 0 // whole numbers on yAxis
+            }
+          }]
+        },
+          legend: {
+            display: false // hide label
           }
-        });
-
-
-      })
+      }
     });
+  }
+
+  setUpGraphWorkoutTypesForFree(){
+    var myChart = new Chart("barChart", {
+      type: 'bar',
+      data: {
+        labels: ['Test', 'Running', 'Resistance', 'Hybrid', 'Rest'],
+        datasets: [{
+          label: '',
+          data: [this.workoutTestCount, this.runningCount, this.resistanceCount, this.runningAndResistanceCount, this.restCount],
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(255, 159, 64, 0.2)'
+          ],
+          borderColor: [
+            'rgba(255, 99, 132, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)'
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true,
+              precision: 0 // whole numbers on yAxis
+            }
+          }]
+        },
+          legend: {
+            display: false // hide label
+          }
+      }
+    });
+  }
+
+  async onTabChange(event: MatTabChangeEvent) {
+    console.log("yoyo: " + event.tab);
+    console.log("here is the event: " + event)
+    this.tabName = event.tab.textLabel;   
+    
+    switch(this.tabName) { 
+      case "tab1": { 
+        this.tabSelected = 1
+        this.index = 0
+        this.setUpGraphWorkoutTypesForFree()
+        this.setUpSessionCompletedMissedOpenGraphFree(this.program)
+        break; 
+      } 
+      case "tab2": { 
+        this.tabSelected = 2
+        this.index = 1
+        this.setUpGraphWorkoutTypesForAdvancedPlan()
+        this.setUpSessionCompletedMissedOpenGraphAdvancedPlan(this.program)
+        break; 
+      }  
+      default: { 
+         //statements; 
+         break; 
+      } 
+   } 
 
   }
 

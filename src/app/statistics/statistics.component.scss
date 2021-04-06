@@ -11,6 +11,14 @@
         color: white;
     }
 
+    .nav-bar{
+        flex: 1;
+        display: flex;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+    }
+
     .top{
         flex: 1;
         display: flex;
